@@ -12,5 +12,19 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require jquery-ui
+//= require jquery-ui/effect.all
+//= require spin
+//= require jquery.spin
+//= require jquery.modal
+
+//= require tether
+
+//= require bootstrap-sprockets
+
 //= require turbolinks
+//= require interact
+
 //= require_tree .
