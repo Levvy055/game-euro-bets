@@ -1,25 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Matches</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @matches.each do |match| %>
-      <tr>
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match) %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Match', new_match_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <p id="notice"><%= notice %></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h1><%= t '.listing_matches' %></h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @matches.each do |match| %>
+            <tr>
+              <td><%= link_to t('.show'), match %></td>
+              <td><%= link_to t('.edit'), edit_match_path(match) %></td>
+              <td><%= link_to t('.destroy'), match, method: :delete, data: { confirm: t('rus?') } %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <%= link_to 'New Match', new_match_path %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,29 @@
-<%= form_for(@bet) do |f| %>
-  <% if @bet.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@bet.errors.count, "error") %> prohibited this bet from being saved:</h2>
-
-      <ul>
-      <% @bet.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <div class="col-md-6">
+    <%= form_for(@bet) do |f| %>
+      <div class="match-name">
+        <span><%= @bet.match %></span>
+      </div>
+      <% if @bet.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@bet.errors.count, "error") %> prohibited this bet from being saved:
+          </h2>
+          <ul>
+          <% @bet.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+      <div class="fields">
+        <%= f.label :score_a, :label => Bet.human_attribute_name('score_a'), :class => "label" %>
+        <%= f.number_field :email, :placeholder => Bet.human_attribute_name('email'), :required => "required", :class => "input-txt" %>
+        <%= f.password_field :password, :placeholder =>  Bet.human_attribute_name('password'), :required => "required", :class => "input-txt" %>
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

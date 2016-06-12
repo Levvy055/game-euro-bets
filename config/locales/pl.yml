@@ -23,7 +23,7 @@ pl:
     attributes:
       user:
         email: E-mail
-        visible_name: Widoczna nazwa
+        visible_name: Widoczna nazwa użytkownika
         password: Hasło
       country:
         name: Nazwa
@@ -41,19 +41,35 @@ pl:
       title_page: 'Euro 2016 - Zakłady'
       close: Zamknij
       ok: Ok
+    header:
+      
+    footer:
+      author: Autor
+
   sessions:
     new:
       login: Zaloguj się
       email: E-mail
       welcome: Witaj.
-      please: Zaloguj się
+      please: Zaloguj się bądź zarejestruj
       password: Hasło
-  bet:
+      register: Zarejestruj się
+  bets:
     new:
       title: Dodaj zakład
       add: Dodaj
   users:
-    
+    new:
+      new: Zarejestruj się
+    form:
+      save: Zapisz
+  matches:
+    index:
+      listing_matches: Lista meczów
+      show: Pokaż
+      edit: Edytuj
+      destroy: Usuń
+      rus?: Jesteś pewny
 
   date:
     abbr_day_names:
@@ -178,6 +194,7 @@ pl:
     no_access_title: "Brak uprawnień"
     messages:
       not_logged_in: "Musisz być zalogowanym, aby otrzymać dostęp do tej strony!"
+      not_admin: "Nie masz uprawnień!"
       accepted: musi zostać zaakceptowane
       blank: nie może być puste
       confirmation: nie zgadza się z polem %{attribute}

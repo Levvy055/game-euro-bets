@@ -25,7 +25,7 @@ class BetsController < ApplicationController
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
-
+    @bet.user = current_user  
     respond_to do |format|
       if @bet.save
         format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
@@ -69,6 +69,6 @@ class BetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.fetch(:bet, {})
+      params.require(:bet).permit(:match, :country_a, :country_b, :score_a, :score_b)
     end
 end

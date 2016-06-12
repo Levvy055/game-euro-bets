@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
   end
   
   def require_user
-    redirect_to root_path, :alert => t('errors.messages.not_logged_in') unless current_user
+    redirect_to login_page_path, :alert => t('errors.messages.not_logged_in') unless current_user
+  end
+  
+  def require_admin
+    redirect_to root_path, :alert => t('errors.messages.not_admin') unless current_user && current_user.is_admin
   end
 end

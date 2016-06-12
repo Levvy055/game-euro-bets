@@ -1,5 +1,7 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
+  before_action :require_user, only: [:new, :edit, :update, :destroy]
+  before_action :require_admin, only: [:new, :edit, :update, :destroy]
 
   # GET /matches
   # GET /matches.json
@@ -69,6 +71,6 @@ class MatchesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def match_params
-      params.fetch(:match, {})
+      params.require(:match).permit(:country_a, :country_b, :score_a, :score_b)
     end
 end

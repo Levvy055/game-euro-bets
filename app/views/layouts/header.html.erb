@@ -20,7 +20,7 @@
                       <li <%= 'class=active' if current_page?(controller: 'matches', action: 'index') %>><%= link_to t('.matches'), 'matches#index' %> </li>
                       <li class="login">
                         <% if !current_user %>
-                            <%= link_to t('.login'),"#", {'data-toggle': "modal", 'data-target': "#login_modal"} %>
+                            <%= link_to t('.login'), login_page_path %>
                         <% else %>
                             <%= link_to t('.logout'), logout_path, method: 'delete' %>
                         <% end %>

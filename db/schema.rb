@@ -28,19 +28,12 @@ ActiveRecord::Schema.define(version: 20160610000927) do
   create_table "countries", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
     t.string   "code",       limit: 255, null: false
+    t.integer  "group_id",   limit: 4,   null: false
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
 
-  create_table "country_groups_assignments", force: :cascade do |t|
-    t.integer  "country_id", limit: 4, null: false
-    t.integer  "group_id",   limit: 4, null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-  end
-
-  add_index "country_groups_assignments", ["country_id"], name: "index_country_groups_assignments_on_country_id", using: :btree
-  add_index "country_groups_assignments", ["group_id"], name: "index_country_groups_assignments_on_group_id", using: :btree
+  add_index "countries", ["group_id"], name: "fk_rails_ab2919a17b", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",       limit: 255, null: false
@@ -51,6 +44,7 @@ ActiveRecord::Schema.define(version: 20160610000927) do
   create_table "matches", force: :cascade do |t|
     t.integer  "score_a",      limit: 4
     t.integer  "score_b",      limit: 4
+    t.datetime "start_time",             null: false
     t.integer  "country_a_id", limit: 4, null: false
     t.integer  "country_b_id", limit: 4, null: false
     t.datetime "created_at",             null: false
@@ -58,15 +52,15 @@ ActiveRecord::Schema.define(version: 20160610000927) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "visible_name",    limit: 255, null: false
-    t.string   "email",           limit: 255, null: false
-    t.string   "password_digest", limit: 255, null: false
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.string   "visible_name",    limit: 255,             null: false
+    t.string   "email",           limit: 255,             null: false
+    t.string   "password_digest", limit: 255,             null: false
+    t.integer  "level",           limit: 4,   default: 0, null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
   end
 
   add_foreign_key "bets", "matches"
   add_foreign_key "bets", "users"
-  add_foreign_key "country_groups_assignments", "countries"
-  add_foreign_key "country_groups_assignments", "groups"
+  add_foreign_key "countries", "groups"
 end

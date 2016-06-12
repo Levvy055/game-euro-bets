@@ -1,17 +1,26 @@
-<%= form_for(@user) do |f| %>
-  <% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <div class="col-md-6">
+    <%= bootstrap_form_for(@user, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8") do |f| %>
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:
+          </h2>
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+      <div class="fields">
+        <%= f.text_field :visible_name, :placeholder => User.human_attribute_name('visible_name'), :required => "required", :class => "input-txt" %>
+        <%= f.email_field :email, :placeholder => User.human_attribute_name('email'), :required => "required", :class => "input-txt" %>
+        <%= f.password_field :password, :placeholder =>  User.human_attribute_name('password'), :required => "required", :class => "input-txt" %>
+      </div>
+      <div class="actions">
+        <%= f.submit t('.save'), class: "btn btn-success"%>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>

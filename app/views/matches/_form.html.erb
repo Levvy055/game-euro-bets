@@ -1,17 +1,24 @@
-<%= form_for(@match) do |f| %>
-  <% if @match.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:</h2>
-
-      <ul>
-      <% @match.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<div class="container">
+  <div class="col-md-6">
+    <%= bootstrap_form_for(@match, layout: :horizontal, label_col: "col-sm-4", control_col: "col-sm-8") do |f| %>
+      <% if @match.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@match.errors.count, "error") %> prohibited this match from being saved:
+          </h2>
+          <ul>
+          <% @match.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
+      <div class="fields">
+        
+      </div>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
