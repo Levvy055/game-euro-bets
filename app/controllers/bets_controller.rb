@@ -1,5 +1,8 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
+  before_action :set_match
+  before_action :require_user, only: [:new, :edit, :update, :edit, :destroy]
+  before_action :is_owner_or_admin, only: [:edit, :update, :edit, :destroy]
 
   # GET /bets
   # GET /bets.json
@@ -14,7 +17,12 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
-    @bet = Bet.new
+    if params.has_key?(:bet)
+      b = params.fetch(:bet)
+      @bet = Bet.new(b)
+    else
+      @bet = Bet.new
+    end
   end
 
   # GET /bets/1/edit
@@ -25,12 +33,14 @@ class BetsController < ApplicationController
   # POST /bets.json
   def create
     @bet = Bet.new(bet_params)
-    @bet.user = current_user  
+    @bet.user = current_user
+    @bet.match = @match
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to @bet, notice: 'Bet was successfully created.' }
+        format.html { redirect_to match_bet_path(@bet, match_id: mid), notice: 'Bet was successfully created.' }
         format.json { render :show, status: :created, location: @bet }
       else
+        #byebug
         format.html { render :new }
         format.json { render json: @bet.errors, status: :unprocessable_entity }
       end
@@ -60,15 +70,29 @@ class BetsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def my_bets
+    
+  end
+  
+  def is_owner_or_admin
+    @bet.user == current_user || current_user.is_admin
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bet
       @bet = Bet.find(params[:id])
     end
+    
+    def set_match
+      if params.has_key?(:match_id)
+        @match = Match.find(params[:match_id])
+      end
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bet_params
-      params.require(:bet).permit(:match, :country_a, :country_b, :score_a, :score_b)
+      params.require(:bet).permit(:score_a, :score_b)
     end
 end

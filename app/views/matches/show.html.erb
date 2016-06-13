@@ -1,4 +1,36 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_match_path(@match) %> |
-<%= link_to 'Back', matches_path %>
+<div class="jumbotron">
+    <p id="notice"><%= notice %></p>
+    <% if current_user_is_admin %>
+        <%= link_to t('.edit'), edit_match_path(@match) %> |
+    <% end %>
+    <%= link_to matches_path do %>
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+    <div class="match_details">
+        <table>
+            <tr>
+                <td data-title="Czas rozpoczęcia"><%= @match.start_time.to_s(:short) %></td>
+                <td data-title="Kraj A">
+                  <%= @match.country_a.name %>
+                  <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+                </td>
+                <td data-title="Wynik A"><%= @match.score_a == nil ? '~' : @match.score_a %></td>
+                <td data-title=":"> : </td>
+                <td data-title="Wynik B"><%= @match.score_b == nil ? '~' : @match.score_b %> </td>
+                <td data-title="Kraj B">
+                  <%= @match.country_b.name %>
+                  <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+                </td>
+                <% if @match.are_bets_active %>
+                  <td data-title="Obstaw mecz">
+                    <%= link_to new_match_bet_path(match_id: @match.id) do %>
+                        <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td></td>
+                <% end %>
+             </tr>
+        </table>
+    </div>
+</div>

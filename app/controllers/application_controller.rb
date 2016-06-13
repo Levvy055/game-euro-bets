@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :setup_locales
   before_action :set_locale
-  helper_method :current_locale, :current_user
+  helper_method :current_locale, :current_user, :current_user_is_admin
   
   
   def set_locale(locale = nil)
@@ -27,11 +27,15 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   
+  def current_user_is_admin
+    current_user && current_user.is_admin
+  end
+  
   def require_user
     redirect_to login_page_path, :alert => t('errors.messages.not_logged_in') unless current_user
   end
   
   def require_admin
-    redirect_to root_path, :alert => t('errors.messages.not_admin') unless current_user && current_user.is_admin
+    redirect_to root_path, :alert => t('errors.messages.not_admin') unless current_user_is_admin
   end
 end

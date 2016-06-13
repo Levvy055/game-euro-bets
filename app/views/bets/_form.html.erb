@@ -1,6 +1,6 @@
 <div class="container">
   <div class="col-md-6">
-    <%= form_for(@bet) do |f| %>
+    <%= bootstrap_form_for(@bet, url: match_bets_path(@bet, match_id: params[:match_id]), layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
       <div class="match-name">
         <span><%= @bet.match %></span>
       </div>
@@ -17,12 +17,14 @@
         </div>
       <% end %>
       <div class="fields">
-        <%= f.label :score_a, :label => Bet.human_attribute_name('score_a'), :class => "label" %>
-        <%= f.number_field :email, :placeholder => Bet.human_attribute_name('email'), :required => "required", :class => "input-txt" %>
-        <%= f.password_field :password, :placeholder =>  Bet.human_attribute_name('password'), :required => "required", :class => "input-txt" %>
+        <div class="bet_country" ><%= @match.country_a.name %></div>
+        <%= f.number_field :score_a, :placeholder => Bet.human_attribute_name('score_a'), :required => "required", :class => "input-txt" %>
+        <sapn>vs</sapn>
+        <%= f.number_field :score_b, :placeholder => Bet.human_attribute_name('score_b'), :required => "required", :class => "input-txt" %>
+        <div class="bet_country" ><%= @match.country_b.name %></div>
       </div>
       <div class="actions">
-        <%= f.submit %>
+        <%= f.submit t('.new') %>
       </div>
     <% end %>
   </div>

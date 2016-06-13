@@ -1,17 +1,21 @@
 Rails.application.routes.draw do
   
-  get 'login' => 'sessions#new', as: :login_page
-  post '/login' => 'sessions#create', as: :login
-  delete '/logout' => 'sessions#destroy', as: :logout
+  get '/login' => 'sessions#new', as: :login_page
+  post 'login' => 'sessions#create', as: :login
+  delete 'logout' => 'sessions#destroy', as: :logout
   
-  resources :groups
-  resources :countries
-  resources :matches
-  resources :bets
-  
-  get 'register' => 'users#new', as: :register
-  
-  resources :users
+  resources :groups do
+    resources :countries
+  end
+  resources :matches, only: [:index, :update, :edit, :show] do
+    resources :bets
+  end
+
+  get '/all_bets' => 'bets#index', as: :all_bets
+  get '/my_bets' => 'bets#my_bets', as: :my_bets
+
+  get '/register' => 'users#new', as: :register
+  resources :users, only: [:new, :create]
   
   root 'matches#index'
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,7 +1,7 @@
   <div class="container">
       <div class="row">
           <div class="col-md-5">
-              <p><%= t ('.header_unsigned_text') %></p>
+              <p><%= t '.header_text' %></p>
           </div>
           <div class="col-md-7">
               <nav class="navbar pull-right" role="navigation">
@@ -15,9 +15,11 @@
                   </div>
                   <div class="collapse navbar-collapse" id="inventory">
                     <ul class="nav navbar-nav">
-                      <li <%= 'class=active' if current_page?(controller: 'users') %>><%= link_to t('.home'), root_path %> </li>
-                      <li <%= 'class=active' if current_page?(controller: 'bets', action: 'index') %>><%= link_to t('.bets'), 'bets#index' %> </li>
                       <li <%= 'class=active' if current_page?(controller: 'matches', action: 'index') %>><%= link_to t('.matches'), 'matches#index' %> </li>
+                      <li <%= 'class=active' if current_page?(controller: 'bets', action: 'index') %>><%= link_to t('.all_bets'), all_bets_path %> </li>
+                      <% if current_user %>
+                        <li <%= 'class=active' if current_page?(controller: 'bets', action: 'my_bets') %>><%= link_to t('.my_bets'), my_bets_path %> </li>
+                      <% end %>
                       <li class="login">
                         <% if !current_user %>
                             <%= link_to t('.login'), login_page_path %>

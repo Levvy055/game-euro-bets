@@ -1,25 +1,71 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Listing Bets</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @bets.each do |bet| %>
-      <tr>
-        <td><%= link_to 'Show', bet %></td>
-        <td><%= link_to 'Edit', edit_bet_path(bet) %></td>
-        <td><%= link_to 'Destroy', bet, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Bet', new_bet_path %>
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="notice"><%= notice %></p>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= t '.title' %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <table id="table" class="table table-hover table-mc-light-blue">
+          <thead>
+            <tr>
+              <th>Użytkownik</th>
+              <th>Punkty</th>
+              <th>Data meczu</th>
+              <th>Kraj</th>
+              <th>O/R Wynik</th>
+              <th>:</th>
+              <th>O/R Wynik"</th>
+              <th>Kraj</th>
+              <th>Szczegóły betu</th>
+              <th>Edytuj bet</th>
+              <th>Usuń mecz</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bets.each do |bet| %>
+              <% match, a, b = bet.match, bet.country_a, bet.country_b 
+                ar, br = match.score_a - bet.score_a, match.score_b - bet.score_b 
+                oab, rab = bet.score_a - bet.score_b, match.score_a - match.score_b
+                ss_check=(oab>0 && rab>0) || (oab<0 && rab<0) || (oab==0 && rab==0)
+                if ar==0 && br==0
+                    res = 3
+                    print '<tr class="tp_win">'
+                elsif ss_check
+                    res = 1
+                    print '<tr class="op_win">'
+                else
+                    res = 0
+                    print '<tr class="np_win">'
+                end %>
+                <td data-title="Użytkownik"><%= bet.user.visible_name %></td>
+                <td data-title="Punkty"><%= res.to_s %> Pkt</td>
+                <td data-title="Data meczu"><%= match.start_time.to_s(:short) %></td>
+                <td data-title="Kraj">
+                  <%= a.name %>
+                  <%= image_tag 'flags/'+a.code+'.png', class: 'img-responsive' %>
+                </td>
+                <td data-title="Obst/R Wynik"><%= match.score_a == nil ? '~' : bet.score_a.to_s+'/'+match.score_a.to_s %></td>
+                <td data-title=":"> : </td>
+                <td data-title="Obst/R Wynik"><%= match.score_b == nil ? '~' : bet.score_b.to_s+'/'+match.score_b.to_s %> </td>
+                <td data-title="Kraj">
+                  <%= b.name %>
+                  <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>
+                </td>
+                <td data-title="Szczegóły betu"><%= link_to t('.show'), match_bet_path(id: bet.id, match_id: bet.match.id) %></td>
+                <td data-title="Edytuj bet"><%= link_to t('.edit'), edit_match_bet_path(id: bet.id, match_id: bet.match.id) %></td>
+                <td data-title="Usuń bet"><%= link_to t('.destroy'), match_bet_path(id: bet.id, match_id: bet.match.id), method: :delete, data: { confirm: t('.rus?') } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

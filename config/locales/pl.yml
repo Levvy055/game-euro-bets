@@ -20,6 +20,16 @@ pl:
         few: Grupy
         many: Grupy
         other: Grupa
+      match:
+        one: Mecz
+        few: Meczy
+        many: Meczy
+        other: Mecz
+      bet:
+        one: Zakład
+        few: Zakładów
+        many: Zakłady
+        other: Zakład
     attributes:
       user:
         email: E-mail
@@ -30,6 +40,14 @@ pl:
         code: Kod
       group:
         name: Nazwa
+      match:
+        country_a: Kraj
+        country_b: Kraj
+        score_a: Wynik
+        score_b: Wynik
+      bet:
+        score_a: Wynik
+        score_b: Wynik
     errors:
       messages:
         record_invalid: 'Negatywne sprawdzenie poprawności: %{errors}'
@@ -42,7 +60,7 @@ pl:
       close: Zamknij
       ok: Ok
     header:
-      
+      header_text: 'Zakłady Sportowe na Euro 2016'
     footer:
       author: Autor
 
@@ -55,9 +73,20 @@ pl:
       password: Hasło
       register: Zarejestruj się
   bets:
+    form:
+      new: Postaw zakład
     new:
       title: Dodaj zakład
       add: Dodaj
+      new: Postaw zakład
+      back_to_all: Wrót do wszystkich zakładów
+      back_to_my: Wróć do moich zakładów
+      back_to_matches: Wróć do listy meczy
+    index:
+      rus?: Na pewno chcesz usunąć ten zakład?
+      title: Zakłady na wszystkie mecze
+      add: Dodaj
+      new: Postaw zakład
   users:
     new:
       new: Zarejestruj się
@@ -70,6 +99,7 @@ pl:
       edit: Edytuj
       destroy: Usuń
       rus?: Jesteś pewny
+      bet: Załóż się
 
   date:
     abbr_day_names:
