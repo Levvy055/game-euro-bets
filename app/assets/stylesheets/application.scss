@@ -86,4 +86,21 @@ body {
         font-size: 20px;
         line-height: 150px !important;
     }
+    
+    #footer {
+        p {
+            color:rgba(255,255,255,1);
+            font-size:16px;
+            text-align:center;
+            
+            a {
+                color:#3c763d;
+                
+                &:hover {
+                    text-decoration: none !important;
+                    background-color: transparent !important;
+                }
+            }
+        }
+    }
 }

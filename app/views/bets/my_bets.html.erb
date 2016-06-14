@@ -1,0 +1,94 @@
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <p id="notice"><%= notice %></p>
+        <p id="alert"><%= alert %></p>
+      </div>
+    </div>  
+    <div class="row">
+      <div class="col-md-12">
+        <h1><%= t '.title' %></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 table-responsive">
+        <table id="table" class="table table-hover table-condensed table-inverse">
+          <thead>
+            <tr>
+              <th><%= t '.points' %></th>
+              <th><%= t '.start_time' %></th>
+              <th><%= Country.model_name.human %></th>
+              <th><%= t '.or_score' %></th>
+              <th><%= Country.model_name.human %></th>
+              <th><%= t '.options' %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @bets.each do |bet| %>
+              <% match, a, b = bet.match, bet.country_a, bet.country_b 
+                if match.score_a != nil
+                  ar, br = match.score_a - bet.score_a, match.score_b - bet.score_b 
+                  oab, rab = bet.score_a - bet.score_b, match.score_a - match.score_b
+                  ss_check=(oab > 0 && rab > 0) || (oab < 0 && rab < 0) || (oab == 0 && rab == 0)
+                  if ar==0 && br==0
+                      res = 3
+                      print '<tr class="tp_win">'
+                  elsif ss_check
+                      res = 1
+                      print '<tr class="op_win">'
+                  else
+                      res = 0
+                      print '<tr class="np_win">'
+                  end 
+                else
+                  print '<tr class="wait_win">'
+                end %>
+                <td data-title="<%= t '.points' %>"><%= res != nil ? res.to_s + 'Pkt' :  t('.waiting') %></td>
+                <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
+                <td data-title="<%= Country.model_name.human %>">
+                  <%= a.name %>
+                  <%= image_tag 'flags/'+a.code+'.png', class: 'img-responsive' %>
+                </td>
+                <td data-title="<%= t '.or_score' %>">
+                  <div class="predicted_score">
+                    <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
+                    :
+                    <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                  </div>
+                  <% if match.score_a != nil && match.score_b != nil %>
+                    <div class="real_score">
+                      <%=  match.score_a.to_s %> 
+                      : 
+                      <%=  match.score_b.to_s %> 
+                  <% else %>
+                    <div class="wait_score">
+                      Match not finished
+                  <% end %>
+                  </div>
+                </td>
+                <td data-title="<%= Country.model_name.human %>">
+                  <%= b.name %>
+                  <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>
+                </td>
+                <td data-title="<%= t '.options' %>">
+                  <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id) do %>
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                  <% end %>
+                  <% if match.are_bets_active %>
+                     | <%= link_to edit_match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link' do %>
+                       <i class="fa fa-pencil" aria-hidden="true"></i>
+                     <% end %>| 
+                    <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link', method: :delete, data: { confirm: t('.rus?') } do %>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

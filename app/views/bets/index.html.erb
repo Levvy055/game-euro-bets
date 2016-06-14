@@ -21,8 +21,6 @@
               <th><%= t '.start_time' %></th>
               <th><%= Country.model_name.human %></th>
               <th><%= t '.or_score' %></th>
-              <th>:</th>
-              <th><%= t '.or_score' %></th>
               <th><%= Country.model_name.human %></th>
               <th><%= t '.options' %></th>
             </tr>
@@ -54,9 +52,23 @@
                   <%= a.name %>
                   <%= image_tag 'flags/'+a.code+'.png', class: 'img-responsive' %>
                 </td>
-                <td data-title="<%= t '.or_score' %>"><%= match.score_a == nil ? (bet.score_a == nil ? '~/' : bet.score_a.to_s+'/')+'~' : bet.score_a.to_s+'/'+match.score_a.to_s %></td>
-                <td data-title=":"> : </td>
-                <td data-title="<%= t '.or_score' %>"><%= match.score_b == nil ? (bet.score_b == nil ? '~/' : bet.score_b.to_s+'/')+'~' : bet.score_b.to_s+'/'+match.score_b.to_s %> </td>
+                <td data-title="<%= t '.or_score' %>">
+                  <div class="predicted_score">
+                    <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
+                    :
+                    <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                  </div>
+                  <% if match.score_a != nil && match.score_b != nil %>
+                    <div class="real_score">
+                      <%=  match.score_a.to_s %> 
+                      : 
+                      <%=  match.score_b.to_s %> 
+                  <% else %>
+                    <div class="wait_score">
+                      Match not finished
+                  <% end %>
+                  </div>
+                </td>
                 <td data-title="<%= Country.model_name.human %>">
                   <%= b.name %>
                   <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>

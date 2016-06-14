@@ -4,21 +4,23 @@ Rails.application.routes.draw do
   post 'login' => 'sessions#create', as: :login
   delete 'logout' => 'sessions#destroy', as: :logout
   
+  get '/register' => 'users#new', as: :register
+  resources :users, only: [ :create]
+  get 'ranking' => 'users#ranking', as: :ranking
+  
   resources :groups do
     resources :countries
   end
+  
   resources :matches, only: [:index, :update, :edit, :show] do
-    resources :bets
+    get 'new_bet' => 'bets#new'
+    post 'create_bet' => 'bets#create'
+    resources :bets, only: [:update, :destroy, :show, :edit]
   end
 
   get '/all_bets' => 'bets#index', as: :all_bets
   get '/my_bets' => 'bets#my_bets', as: :my_bets
 
-  get '/register' => 'users#new', as: :register
-  resources :users, only: [ :create]
-  
-  get 'ranking' => 'users#ranking', as: :ranking
-  
   root 'matches#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

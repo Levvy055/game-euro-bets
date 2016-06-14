@@ -24,12 +24,7 @@ class BetsController < ApplicationController
       @bet=bet.first
       redirect_to edit_match_bet_path(@bet, match_id: @match.id)
     end
-    if params.has_key?(:bet)
-      b = params.fetch(:bet)
-      @bet = Bet.new(b)
-    else
-      @bet = Bet.new
-    end
+    @bet = Bet.new
     @bet.match = @match
   end
 
@@ -80,7 +75,7 @@ class BetsController < ApplicationController
   end
   
   def my_bets
-    
+    @bets = Bet.where(user: current_user).includes(match: [:country_a, :country_b])
   end
   
   def is_owner_or_admin

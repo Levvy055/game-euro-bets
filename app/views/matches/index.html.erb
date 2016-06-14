@@ -49,7 +49,7 @@
                 <td data-title="<%= t '.make_bet' %>">
                 <% if match.are_bets_active %>
                     <% if (betR = Bet.where(match: match, user: current_user)).empty? %>
-                      <%= link_to new_match_bet_path(match_id: match.id) do %>
+                      <%= link_to match_new_bet_path(match_id: match.id) do %>
                         <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
                       <% end %>
                     <% else %>

@@ -65,7 +65,7 @@ pl:
       all_bets: Wszystkie zakłady
       my_bets: Moje zakłady
       ranking: Ranking
-      login: Login
+      login: Logowanie/Rejestracja
       logout: Logout
     footer:
       author: Autor
@@ -79,8 +79,6 @@ pl:
       password: Hasło
       register: Zarejestruj się
   bets:
-    form:
-      new: Postaw zakład
     new:
       title: Postaw zakład
       add: Dodaj
@@ -93,10 +91,18 @@ pl:
       back_to_my: Wróć do moich zakładów
       back_to_matches: Wróć do listy meczy
     index:
-      rus?: Na pewno chcesz usunąć ten zakład?
+      rus?: 'Na pewno chcesz cofnąć ten zakład?'
       title: Zakłady na wszystkie mecze
       add: Dodaj
       new: Postaw zakład
+      points: Punkty
+      start_time: Data meczu
+      or_score: O/R Wynik
+      options: Opcje
+      waiting: Oczekiwanie
+    my_bets:
+      rus?: 'Na pewno chcesz cofnąć ten zakład?'
+      title: Twoje zakłady
       points: Punkty
       start_time: Data meczu
       or_score: O/R Wynik
@@ -113,6 +119,9 @@ pl:
       new: Zarejestruj się
     form:
       save: Zapisz
+    ranking:
+      title: Ranking
+      points: Zdobyte punkty
   matches:
     index:
       listing_matches: Lista meczów

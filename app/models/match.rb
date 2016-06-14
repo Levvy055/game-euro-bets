@@ -7,6 +7,10 @@ class Match < ActiveRecord::Base
        self.start_time > DateTime.now 
     end
     
+    def got_score
+       self.score_a != nil && self.score_b != nil && !are_bets_active
+    end
+    
     validates :country_a, presence: true
     validates :country_b, presence: true
     validates :start_time, presence: true
