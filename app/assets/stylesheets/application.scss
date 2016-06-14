@@ -41,6 +41,49 @@ body {
     }
     
     .navbar {
-        
+        li {
+            a {
+                color: rgba(255,255,255,1);
+                text-shadow: 0 1px 0 rgba(0, 0, 0, 1);
+                
+                &:hover {
+                    color: rgba(0, 255, 0, 1) !important;
+                    background-color:transparent !important;
+                }
+            }
+        }
+    }
+    
+    h1 {
+        text-align:center;
+    }
+    
+    a.info-link {
+        color:rgba(0,0,0,1) !important;
+        background-color: transparent !important;
+    }
+
+    i {
+        font-size: 50px !important;
+        margin-top: 40px;
+        margin-left: 10px;
+    }
+    
+    th {
+        text-align:center !important;
+    }
+    
+    td {
+        text-align:center !important;
+    }
+    
+    td.countries {
+        font-size: 25px;
+        line-height:32px;
+    }
+    
+    td.score {
+        font-size: 20px;
+        line-height: 150px !important;
     }
 }

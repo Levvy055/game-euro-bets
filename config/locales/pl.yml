@@ -99,7 +99,13 @@ pl:
       new: Postaw zakład
       points: Punkty
       start_time: Data meczu
+      or_score: O/R Wynik
+      options: Opcje
       waiting: Oczekiwanie
+    update:
+      updated: Zakład został zaktualizowany pomyślnie
+    create:
+      created: Zakład został postawiony pomyślnie
   users:
     new:
       new: Zarejestruj się
@@ -113,7 +119,13 @@ pl:
       destroy: Usuń
       rus?: Jesteś pewny
       bet: Załóż się
-
+      start_time: Data
+      score: Wynik
+      details: Szczegóły
+      make_bet: Obstaw
+      options: Opcje
+      edit: Edytuj
+    
   date:
     abbr_day_names:
     - nie
@@ -238,6 +250,7 @@ pl:
     messages:
       not_logged_in: "Musisz być zalogowanym, aby otrzymać dostęp do tej strony!"
       not_admin: "Nie masz uprawnień!"
+      bet_disabled: "Zakład nie może już być edytowany"
       accepted: musi zostać zaakceptowane
       blank: nie może być puste
       confirmation: nie zgadza się z polem %{attribute}

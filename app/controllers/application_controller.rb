@@ -4,8 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_action :setup_locales
   before_action :set_locale
-  helper_method :current_locale, :current_user, :current_user_is_admin
-  
+  helper_method :current_locale, :current_user, :current_user_is_admin, :require_bet_active
   
   def set_locale(locale = nil)
     I18n.locale = (locale == nil ? extract_locale_from_tld : extract_locale_from_tld(locale))
@@ -37,5 +36,10 @@ class ApplicationController < ActionController::Base
   
   def require_admin
     redirect_to root_path, :alert => t('errors.messages.not_admin') unless current_user_is_admin
+  end
+  
+  def require_bet_active(bet)
+    res = !current_user || bet == nil || bet.match == nil || !bet.match.are_bets_active
+    redirect_to all_bets_path, :alert => t('errors.messages.bet_disabled') if res
   end
 end

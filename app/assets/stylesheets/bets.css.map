@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAIA,qBAAsB;EAClB,UAAU,EAAE,IAAI;EAChB,QAAQ,EAAE,QAAQ;EAClB,WAAW,EAAE,IAAI",
-"sources": ["bets.scss"],
-"names": [],
-"file": "bets.css"
-}

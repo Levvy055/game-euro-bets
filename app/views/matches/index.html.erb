@@ -15,38 +15,38 @@
         <table id="table" class="table table-hover table-inverse">
           <thead>
             <tr>
-              <th>Czas rozpoczęcia</th>
-              <th>Kraj</th>
-              <th>Wynik</th>
+              <th><%= t '.start_time' %></th>
+              <th><%= Country.model_name.human %></th>
+              <th><%= t '.score' %></th>
               <th>:</th>
-              <th>Wynik</th>
-              <th>Kraj</th>
-              <th>Szczegóły meczu</th>
-              <th>Obstaw mecz</th>
+              <th><%= t '.score' %></th>
+              <th><%= Country.model_name.human %></th>
+              <th><%= t '.details' %></th>
+              <th><%= t '.make_bet' %></th>
               <% if current_user_is_admin %>
-                <th>Edytuj mecz</th>
+                <th><%= t '.edit' %></th>
               <% end %>
             </tr>
           </thead>
           <tbody>
             <% @matches.each do |match| %>
-              <tr>
-                <td data-title="Czas rozpoczęcia"><%= match.start_time.to_s(:short) %></td>
-                <td data-title="Kraj">
+              <tr class="<%= match.are_bets_active ? print('bets_active') : print('bets_disabled') %>">
+                <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
+                <td data-title="<%= Country.model_name.human %>" class="countries">
                   <%= match.country_a.name %>
                   <%= image_tag 'flags/'+match.country_a.code+'.png', class: 'img-responsive' %>
                 </td>
-                <td data-title="Wynik"><%= match.score_a == nil ? '~' : match.score_a %></td>
-                <td data-title=":"> : </td>
-                <td data-title="Wynik"><%= match.score_b == nil ? '~' : match.score_b %> </td>
-                <td data-title="Kraj">
+                <td data-title="<%= t '.score' %>" class="score"><%= match.score_a == nil ? '~' : match.score_a %></td>
+                <td data-title=":" class="score"> : </td>
+                <td data-title="<%= t '.score' %>" class="score"><%= match.score_b == nil ? '~' : match.score_b %> </td>
+                <td data-title="<%= Country.model_name.human %>" class="countries">
                   <%= match.country_b.name %>
                   <%= image_tag 'flags/'+match.country_b.code+'.png', class: 'img-responsive' %>
                 </td>
-                <td data-title="Szczegóły meczu">
-                  <%= link_to match do %><i class="fa fa-info-circle" aria-hidden="true"></i><% end %>
+                <td data-title="<%= t '.details' %>">
+                  <%= link_to match, class: 'info-link'  do %><i class="fa fa-info-circle" aria-hidden="true"></i><% end %>
                 </td>
-                <td data-title="Obstaw mecz">
+                <td data-title="<%= t '.make_bet' %>">
                 <% if match.are_bets_active %>
                     <% if (betR = Bet.where(match: match, user: current_user)).empty? %>
                       <%= link_to new_match_bet_path(match_id: match.id) do %>
@@ -62,7 +62,7 @@
                 <% end %>
                   </td>
                 <% if current_user_is_admin %>
-                  <td data-title="Edytuj mecz"><%= link_to t('.edit'), edit_match_path(match) %></td> 
+                  <td data-title="<%= t '.edit' %>"><%= link_to t('.edit'), edit_match_path(match) %></td> 
                 <% end %>
               </tr>
             <% end %>

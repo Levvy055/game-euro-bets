@@ -1,8 +1,11 @@
 class BetsController < ApplicationController
   before_action :set_bet, only: [:show, :edit, :update, :destroy]
   before_action :set_match
-  before_action :require_user, only: [:new, :edit, :update, :edit, :destroy]
-  before_action :is_owner_or_admin, only: [:edit, :update, :edit, :destroy]
+  before_action :require_user, only: [:new, :edit, :update, :destroy]
+  before_action :is_owner_or_admin, only: [:edit, :update, :destroy]
+  before_action only: [:edit, :update, :destroy] do 
+    require_bet_active(@bet)
+  end
 
   # GET /bets
   # GET /bets.json
@@ -42,7 +45,7 @@ class BetsController < ApplicationController
     @bet.match = @match
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to match_bet_path(@bet, match_id: @match.id), notice: 'Bet was successfully created.' }
+        format.html { redirect_to match_bet_path(@bet, match_id: @match.id), notice: t('.created') }
         format.json { render :show, status: :created, location: @bet }
       else
         #byebug
@@ -57,7 +60,7 @@ class BetsController < ApplicationController
   def update
     respond_to do |format|
       if @bet.update(bet_params)
-        format.html { redirect_to @bet, notice: 'Bet was successfully updated.' }
+        format.html { redirect_to match_bet_path(@bet, match_id: @match.id), notice: t('.updated') }
         format.json { render :show, status: :ok, location: @bet }
       else
         format.html { render :edit }

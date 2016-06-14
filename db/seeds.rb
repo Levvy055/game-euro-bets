@@ -8,6 +8,7 @@
 
 
 tUser = User.create(visible_name: 'test', password: '1234', email: 'test@t.t')
+t2User = User.create(visible_name: 'testA', password: '1234', email: 't@t.t', level: 4)
 
 A = Group.create(name: 'A')
 B = Group.create(name: 'B')
@@ -65,14 +66,14 @@ m17 = Match.create(country_a: UK, country_b: PL, start_time: date.change(day: 21
 m18 = Match.create(country_a: NI, country_b: GE, start_time: date.change(day: 21))
 
 m19 = Match.create(country_a: TU, country_b: CR, start_time: date.change(day: 12, hour: 15), score_a: 0, score_b: 1)
-m20 = Match.create(country_a: SP, country_b: CZ, start_time: date.change(day: 13, hour: 15))
+m20 = Match.create(country_a: SP, country_b: CZ, start_time: date.change(day: 13, hour: 15), score_a: 1, score_b: 0)
 m21 = Match.create(country_a: CZ, country_b: CR, start_time: date.change(day: 17))
 m22 = Match.create(country_a: SP, country_b: TU, start_time: date.change(day: 17, hour: 21))
 m23 = Match.create(country_a: CZ, country_b: TU, start_time: date.change(day: 21, hour: 21))
 m24 = Match.create(country_a: CR, country_b: SP, start_time: date.change(day: 21, hour: 21))
 
-m25 = Match.create(country_a: IR, country_b: SE, start_time: date.change(day: 13))
-m26 = Match.create(country_a: BE, country_b: IT, start_time: date.change(day: 13, hour: 21))
+m25 = Match.create(country_a: IR, country_b: SE, start_time: date.change(day: 13), score_a: 1, score_b: 1)
+m26 = Match.create(country_a: BE, country_b: IT, start_time: date.change(day: 13, hour: 21), score_a: 0, score_b: 2)
 m27 = Match.create(country_a: IT, country_b: SE, start_time: date.change(day: 17, hour: 15))
 m28 = Match.create(country_a: BE, country_b: IR, start_time: date.change(day: 18, hour: 15))
 m29 = Match.create(country_a: IT, country_b: IR, start_time: date.change(day: 22, hour: 21))
