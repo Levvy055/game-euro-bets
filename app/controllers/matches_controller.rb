@@ -12,6 +12,7 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @bets = @match.bets
   end
 
   # GET /matches/new

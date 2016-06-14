@@ -65,7 +65,7 @@ class UsersController < ApplicationController
   
   def ranking
     @users = User.all.includes(bets: :match)
-    @users = @users.sort {|a,b| a.bets_points <=> b.bets_points}
+    @users.sort {|a,b| a.bets_points <=> b.bets_points}
   end
 
   private

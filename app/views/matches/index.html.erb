@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <table id="table" class="table table-hover table-inverse">
+        <table id="table_match" class="table table-hover table-inverse">
           <thead>
             <tr>
               <th><%= t '.start_time' %></th>
@@ -30,7 +30,7 @@
           </thead>
           <tbody>
             <% @matches.each do |match| %>
-              <tr class="<%= match.are_bets_active ? print('bets_active') : print('bets_disabled') %>">
+              <tr class="<%= match.are_bets_active ? 'bets_active' : 'bets_disabled' %>">
                 <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
                 <td data-title="<%= Country.model_name.human %>" class="countries">
                   <%= match.country_a.name %>

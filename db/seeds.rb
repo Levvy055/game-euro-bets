@@ -6,10 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-
-tUser = User.create(visible_name: 'test', password: '1234', email: 'test@t.t')
-t2User = User.create(visible_name: 'testA', password: '1234', email: 't@t.t', level: 4)
-
 A = Group.create(name: 'A')
 B = Group.create(name: 'B')
 C = Group.create(name: 'C')
@@ -79,19 +75,9 @@ m28 = Match.create(country_a: BE, country_b: IR, start_time: date.change(day: 18
 m29 = Match.create(country_a: IT, country_b: IR, start_time: date.change(day: 22, hour: 21))
 m30 = Match.create(country_a: SE, country_b: BE, start_time: date.change(day: 22, hour: 21))
 
-m31 = Match.create(country_a: AU, country_b: HU, start_time: date.change(day: 14))
-m32 = Match.create(country_a: PO, country_b: IC, start_time: date.change(day: 14, hour: 21))
+m31 = Match.create(country_a: AU, country_b: HU, start_time: date.change(day: 14), score_a: 0, score_b: 2)
+m32 = Match.create(country_a: PO, country_b: IC, start_time: date.change(day: 14, hour: 21), score_a: 1, score_b: 1)
 m33 = Match.create(country_a: IC, country_b: HU, start_time: date.change(day: 18))
 m34 = Match.create(country_a: PO, country_b: AU, start_time: date.change(day: 18, hour: 21))
 m35 = Match.create(country_a: IC, country_b: AU, start_time: date.change(day: 22))
 m36 = Match.create(country_a: HU, country_b: PO, start_time: date.change(day: 22))
-
-
-Bet.create(user: tUser, match: m1, score_a: 1, score_b: 1 )
-Bet.create(user: tUser, match: m2, score_a: 2, score_b: 1 )
-Bet.create(user: tUser, match: m3, score_a: 1, score_b: 2 )
-Bet.create(user: tUser, match: m4, score_a: 0, score_b: 1 )
-Bet.create(user: tUser, match: m19, score_a: 1, score_b: 1 )
-Bet.create(user: tUser, match: m26, score_a: 0, score_b: 1 )
-Bet.create(user: t2User, match: m19, score_a: 2, score_b: 1 )
-Bet.create(user: t2User, match: m25, score_a: 1, score_b: 0 )

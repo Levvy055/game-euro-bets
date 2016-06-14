@@ -27,8 +27,8 @@ pl:
         other: Mecz
       bet:
         one: Zakład
-        few: Zakładów
-        many: Zakłady
+        few: Zakłady
+        many: Zakładów
         other: Zakład
     attributes:
       user:
@@ -90,6 +90,11 @@ pl:
       back_to_all: Wrót do wszystkich zakładów
       back_to_my: Wróć do moich zakładów
       back_to_matches: Wróć do listy meczy
+    show:
+      points: Punkty
+      start_time: Data meczu
+      or_score: O/R Wynik
+      options: Opcje
     index:
       rus?: 'Na pewno chcesz cofnąć ten zakład?'
       title: Zakłady na wszystkie mecze
@@ -136,7 +141,14 @@ pl:
       make_bet: Obstaw
       options: Opcje
       edit: Edytuj
-    
+    show:
+      points: Punkty
+      start_time: Data meczu
+      or_score: O/R Wynik
+      options: Opcje
+      waiting: Oczekiwanie
+      rus?: 'Na pewno chcesz cofnąć ten zakład?'
+
   date:
     abbr_day_names:
     - nie
