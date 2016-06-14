@@ -74,7 +74,7 @@ class BetsController < ApplicationController
   def destroy
     @bet.destroy
     respond_to do |format|
-      format.html { redirect_to bets_url, notice: 'Bet was successfully destroyed.' }
+      format.html { redirect_to match_bets_url(match_id: @match.id), notice: t('.destroyed') }
       format.json { head :no_content }
     end
   end

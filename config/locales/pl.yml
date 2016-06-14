@@ -106,6 +106,8 @@ pl:
       updated: Zakład został zaktualizowany pomyślnie
     create:
       created: Zakład został postawiony pomyślnie
+    destroy:
+      destroyed: Zakład został pochłonięty pomyślnie
   users:
     new:
       new: Zarejestruj się

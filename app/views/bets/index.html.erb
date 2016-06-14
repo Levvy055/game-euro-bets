@@ -62,10 +62,16 @@
                   <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>
                 </td>
                 <td data-title="<%= t '.options' %>">
-                  <%= link_to t('.show'), match_bet_path(id: bet.id, match_id: bet.match.id) %>
+                  <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id) do %>
+                    <i class="fa fa-info" aria-hidden="true"></i>
+                  <% end %>
                   <% if match.are_bets_active %>
-                     | <%= link_to t('.edit'), edit_match_bet_path(id: bet.id, match_id: bet.match.id) %> | 
-                    <%= link_to t('.destroy'), match_bet_path(id: bet.id, match_id: bet.match.id), method: :delete, data: { confirm: t('.rus?') } %>
+                     | <%= link_to edit_match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link' do %>
+                       <i class="fa fa-pencil" aria-hidden="true"></i>
+                     <% end %>| 
+                    <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link', method: :delete, data: { confirm: t('.rus?') } do %>
+                      <i class="fa fa-trash" aria-hidden="true"></i>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>
