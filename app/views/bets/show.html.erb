@@ -1,4 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_bet_path(@bet) %> |
-<%= link_to 'Back', bets_path %>
+<div class="jumbotron">
+    <p id="notice"><%= notice %></p>
+    <%= link_to 'javascript:history.back()' do %>
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+    
+    <div class="bet container">
+        <div class="row">
+          <div class="col-md-5">
+            <div class="bet_country">
+              <%= @match.country_a.name %>
+              <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+              <%= @bet.score_a %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <span class="center-height-vs">vs</span>
+          </div>
+          <div class="col-md-5">
+            <div class="bet_country">
+              <%= @match.country_b.name %>
+              <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+              <%= @bet.score_b %>
+            </div>
+          </div>
+        </div>
+    </div>
+    
+    <%= link_to t('.edit'), edit_match_bet_path(id: @bet, match_id: @match) %>
+</div>

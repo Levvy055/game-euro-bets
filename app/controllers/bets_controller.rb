@@ -7,7 +7,7 @@ class BetsController < ApplicationController
   # GET /bets
   # GET /bets.json
   def index
-    @bets = Bet.all
+    @bets = Bet.all.includes(match: [:country_a, :country_b])
   end
 
   # GET /bets/1
@@ -17,12 +17,17 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
+    if !(bet = Bet.where(match: @match, user: current_user)).empty?
+      @bet=bet.first
+      redirect_to edit_match_bet_path(@bet, match_id: @match.id)
+    end
     if params.has_key?(:bet)
       b = params.fetch(:bet)
       @bet = Bet.new(b)
     else
       @bet = Bet.new
     end
+    @bet.match = @match
   end
 
   # GET /bets/1/edit
@@ -37,7 +42,7 @@ class BetsController < ApplicationController
     @bet.match = @match
     respond_to do |format|
       if @bet.save
-        format.html { redirect_to match_bet_path(@bet, match_id: mid), notice: 'Bet was successfully created.' }
+        format.html { redirect_to match_bet_path(@bet, match_id: @match.id), notice: 'Bet was successfully created.' }
         format.json { render :show, status: :created, location: @bet }
       else
         #byebug

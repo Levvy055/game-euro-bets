@@ -1,8 +1,8 @@
 <div class="container">
   <div class="col-md-6">
-    <%= bootstrap_form_for(@bet, url: match_bets_path(@bet, match_id: params[:match_id]), layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-10") do |f| %>
+    <%= bootstrap_form_for(@bet, url: match_bets_path(@bet, match_id: params[:match_id]), layout: :horizontal) do |f| %>
       <div class="match-name">
-        <span><%= @bet.match %></span>
+        <span> Data i godzina meczu: <%= @bet.match.start_time.to_s(:short) %></span>
       </div>
       <% if @bet.errors.any? %>
         <div id="error_explanation">
@@ -16,12 +16,28 @@
           </ul>
         </div>
       <% end %>
+      
+      
       <div class="fields">
-        <div class="bet_country" ><%= @match.country_a.name %></div>
-        <%= f.number_field :score_a, :placeholder => Bet.human_attribute_name('score_a'), :required => "required", :class => "input-txt" %>
-        <sapn>vs</sapn>
-        <%= f.number_field :score_b, :placeholder => Bet.human_attribute_name('score_b'), :required => "required", :class => "input-txt" %>
-        <div class="bet_country" ><%= @match.country_b.name %></div>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="bet_country">
+              <%= @match.country_a.name %>
+              <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+              <%= f.number_field :score_a, :placeholder => Bet.human_attribute_name('score_a'), hide_label: true, :required => "required", :class => "input-txt" %>
+            </div>
+          </div>
+          <div class="col-md-2">
+            <span class="center-height-vs">vs</span>
+          </div>
+          <div class="col-md-5">
+            <div class="bet_country">
+              <%= @match.country_b.name %>
+              <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+              <%= f.number_field :score_b, :placeholder => Bet.human_attribute_name('score_b'), hide_label: true, :required => "required", :class => "input-txt" %>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="actions">
         <%= f.submit t('.new') %>

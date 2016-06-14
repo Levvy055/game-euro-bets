@@ -61,6 +61,12 @@ pl:
       ok: Ok
     header:
       header_text: 'Zakłady Sportowe na Euro 2016'
+      matches: Mecze
+      all_bets: Wszystkie zakłady
+      my_bets: Moje zakłady
+      ranking: Ranking
+      login: Login
+      logout: Logout
     footer:
       author: Autor
 
@@ -76,9 +82,13 @@ pl:
     form:
       new: Postaw zakład
     new:
-      title: Dodaj zakład
+      title: Postaw zakład
       add: Dodaj
-      new: Postaw zakład
+      back_to_all: Wrót do wszystkich zakładów
+      back_to_my: Wróć do moich zakładów
+      back_to_matches: Wróć do listy meczy
+    edit:
+      title: Edytuj zakład
       back_to_all: Wrót do wszystkich zakładów
       back_to_my: Wróć do moich zakładów
       back_to_matches: Wróć do listy meczy
@@ -87,6 +97,9 @@ pl:
       title: Zakłady na wszystkie mecze
       add: Dodaj
       new: Postaw zakład
+      points: Punkty
+      start_time: Data meczu
+      waiting: Oczekiwanie
   users:
     new:
       new: Zarejestruj się

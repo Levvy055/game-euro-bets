@@ -1,8 +1,12 @@
 <div class="jumbotron">
-    <h1><%= t '.new' %></h1>
+    <h1><%= t '.title' %></h1>
+    <%= link_to 'javascript:history.back()' do %>
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+    
     <%= render 'form' %>
     
-    <%= link_to t('.back_to_all'), all_bets_path %>
-    <%= link_to t('.back_to_my'), my_bets_path %>
+    <%= link_to t('.back_to_all'), all_bets_path %> | 
+    <%= link_to t('.back_to_my'), my_bets_path %> | 
     <%= link_to t('.back_to_matches'), matches_path %>
 </div>

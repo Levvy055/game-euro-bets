@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   get '/my_bets' => 'bets#my_bets', as: :my_bets
 
   get '/register' => 'users#new', as: :register
-  resources :users, only: [:new, :create]
+  resources :users, only: [ :create]
+  
+  get 'ranking' => 'users#ranking', as: :ranking
   
   root 'matches#index'
   # The priority is based upon order of creation: first created -> highest priority.
