@@ -96,6 +96,7 @@ pl:
       start_time: Data meczu
       or_score: O/R Wynik
       options: Opcje
+      edit: Edytuj
     index:
       rus?: 'Na pewno chcesz cofnąć ten zakład?'
       title: Zakłady na wszystkie mecze
@@ -106,6 +107,8 @@ pl:
       or_score: O/R Wynik
       options: Opcje
       waiting: Oczekiwanie
+      p_score: Obstawiony
+      r_score: Realny
     my_bets:
       rus?: 'Na pewno chcesz cofnąć ten zakład?'
       title: Twoje zakłady

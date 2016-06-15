@@ -55,21 +55,28 @@
                 <% end %>
               </td>
               <td data-title="<%= t '.or_score' %>">
-                <div class="predicted_score">
-                  <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
-                  :
-                  <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
-                </div>
+                <fieldset class="predicted_score">
+                  <legend><%= t '.p_score' %></legend>
+                  <div>
+                    <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
+                    :
+                    <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                  </div>
+                </fieldset>
                 <% if match.score_a != nil && match.score_b != nil %>
-                  <div class="real_score">
-                    <%=  match.score_a.to_s %> 
-                    : 
-                    <%=  match.score_b.to_s %> 
+                  <fieldset class="real_score">
+                    <legend><%= t '.r_score' %></legend>
+                    <div>
+                      <%=  match.score_a.to_s %> 
+                      : 
+                      <%=  match.score_b.to_s %> 
+                    </div>
+                  </fieldset>
                 <% else %>
-                  <div class="wait_score">
+                  <div class="real_score">
                     Match not finished
+                  </div>
                 <% end %>
-                </div>
               </td>
               <td data-title="<%= Country.model_name.human %>">
                 <%= link_to group_country_path(id: b.id, group_id: b.group.id) do %>

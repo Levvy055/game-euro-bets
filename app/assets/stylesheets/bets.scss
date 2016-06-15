@@ -6,6 +6,7 @@ span.center-height-vs {
     margin-top: 68px;
     position: absolute;
     margin-left: 17px;
+    font-size:25px;
 }
 
 .np_win {background-color:#380202;}
@@ -26,4 +27,59 @@ span.center-height-vs {
         margin-left: 10px;
         margin-bottom: 90px;
     }
+}
+
+.predicted_score {
+    background-color: rgba(123, 115, 25, 0.2);
+    padding: 2px 4px 2px 4px;
+    -webkit-border-radius: 4px;
+    legend {
+        font-size: 12px;
+    }
+}
+
+.real_score {
+    background-color: #47627a;
+    padding: 2px 4px 2px 4px;
+    -webkit-border-radius: 4px;
+}
+
+.wait_score {
+    background-color: #47627a;
+    padding: 2px 4px 2px 4px;
+    -webkit-border-radius: 4px;
+}
+
+legend {
+    color: white;
+    width:inherit;
+    padding:0 10px;
+    border-bottom:none;
+    margin-bottom: 0px;
+    font-size: 1em;
+    font-weight: 1;
+    text-align: left;
+}
+
+tr:hover > {
+    td {
+        fieldset {
+            legend {
+                color:rgba(0,0,0,1) !important;
+            }
+        }
+    }
+}
+
+fieldset {
+    font-size: 16px;
+    border: 1px groove #0e0e0e;
+    padding: 0 1em 1em 1em;
+    margin: 0 0 1em 0;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+fieldset:hover {
+    border-color: #fff;
 }
