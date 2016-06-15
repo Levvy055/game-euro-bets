@@ -27,24 +27,19 @@
           <tbody>
             <% @bets.each do |bet| %>
               <% match, a, b = bet.match, bet.country_a, bet.country_b 
-                if match.score_a != nil
-                  ar, br = match.score_a - bet.score_a, match.score_b - bet.score_b 
-                  oab, rab = bet.score_a - bet.score_b, match.score_a - match.score_b
-                  ss_check=(oab > 0 && rab > 0) || (oab < 0 && rab < 0) || (oab == 0 && rab == 0)
-                  if ar==0 && br==0
-                      res = 3
-                      print '<tr class="tp_win">'
-                  elsif ss_check
-                      res = 1
-                      print '<tr class="op_win">'
-                  else
-                      res = 0
-                      print '<tr class="np_win">'
-                  end 
-                else
-                  print '<tr class="wait_win">'
-                end %>
-                <td data-title="<%= t '.points' %>"><%= res != nil ? res.to_s + 'Pkt' :  t('.waiting') %></td>
+                if !match.are_bets_active
+                  points = bet.points
+                  if points == 3 %>
+                      <tr class="tp_win">
+                  <% elsif points == 1 %>
+                      <tr class="op_win">
+                  <% else %>
+                      <tr class="np_win">
+                  <% end 
+                else %>
+                  <tr class="wait_win">
+                <% end %>
+                <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
                 <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
                 <td data-title="<%= Country.model_name.human %>">
                   <%= a.name %>

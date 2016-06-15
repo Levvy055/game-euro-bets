@@ -8,8 +8,8 @@ Rails.application.routes.draw do
   resources :users, only: [ :create]
   get 'ranking' => 'users#ranking', as: :ranking
   
-  resources :groups do
-    resources :countries
+  resources :groups, only: [:index, :show] do
+    resources :countries, only: [:index, :show]
   end
   
   resources :matches, only: [:index, :update, :edit, :show] do

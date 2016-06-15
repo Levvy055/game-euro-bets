@@ -144,7 +144,7 @@ pl:
     show:
       points: Punkty
       start_time: Data meczu
-      or_score: O/R Wynik
+      pr_score: Obstawiony Wynik
       options: Opcje
       waiting: Oczekiwanie
       rus?: 'Na pewno chcesz cofnąć ten zakład?'

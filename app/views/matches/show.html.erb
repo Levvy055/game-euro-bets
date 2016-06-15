@@ -42,7 +42,7 @@
               <th><%= User.model_name.human %></th>
               <th><%= t '.points' %></th>
               <th><%= t '.start_time' %></th>
-              <th><%= t '.or_score' %></th>
+              <th><%= t '.pr_score' %></th>
               <th><%= t '.options' %></th>
             </tr>
           </thead>
@@ -59,7 +59,7 @@
                     <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
                     <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
                     <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
-                    <td data-title="<%= t '.or_score' %>">
+                    <td data-title="<%= t '.pr_score' %>">
                         <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
                         :
                         <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>

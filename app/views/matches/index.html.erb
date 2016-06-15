@@ -18,8 +18,6 @@
               <th><%= t '.start_time' %></th>
               <th><%= Country.model_name.human %></th>
               <th><%= t '.score' %></th>
-              <th>:</th>
-              <th><%= t '.score' %></th>
               <th><%= Country.model_name.human %></th>
               <th><%= t '.details' %></th>
               <th><%= t '.make_bet' %></th>
@@ -36,9 +34,13 @@
                   <%= match.country_a.name %>
                   <%= image_tag 'flags/'+match.country_a.code+'.png', class: 'img-responsive' %>
                 </td>
-                <td data-title="<%= t '.score' %>" class="score"><%= match.score_a == nil ? '~' : match.score_a %></td>
-                <td data-title=":" class="score"> : </td>
-                <td data-title="<%= t '.score' %>" class="score"><%= match.score_b == nil ? '~' : match.score_b %> </td>
+                <td data-title="<%= t '.score' %>" class="score">
+                  <div class="row">
+                    <%= match.score_a == nil ? '~' : match.score_a %>
+                     : 
+                    <%= match.score_b == nil ? '~' : match.score_b %> 
+                  </div>
+                </td>
                 <td data-title="<%= Country.model_name.human %>" class="countries">
                   <%= match.country_b.name %>
                   <%= image_tag 'flags/'+match.country_b.code+'.png', class: 'img-responsive' %>

@@ -21,7 +21,6 @@
 //= require jquery.modal
 
 //= require tether
-
 //= require bootstrap-sprockets
 
 //= require turbolinks

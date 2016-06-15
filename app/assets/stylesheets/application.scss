@@ -87,6 +87,18 @@ body {
         line-height: 150px !important;
     }
     
+    .table-inverse {
+        color: #eceeef;
+        background-color: #373a3c;
+    }
+    
+    .jumbotron {
+        h1 {
+            margin-bottom: 25px;
+            margin-top: -10px;
+        }
+    }
+    
     #footer {
         p {
             color:rgba(255,255,255,1);

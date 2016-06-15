@@ -6,7 +6,9 @@ class User < ActiveRecord::Base
         bs = self.bets.done
         points = 0
         bs.each do |b|
-            points += b.points
+            if b.points != nil
+                points += b.points
+            end
         end
         return points
     end
