@@ -20,12 +20,16 @@ class BetsController < ApplicationController
 
   # GET /bets/new
   def new
-    if !(bet = Bet.where(match: @match, user: current_user)).empty?
-      @bet=bet.first
-      redirect_to edit_match_bet_path(@bet, match_id: @match.id)
+    if @match.are_bets_active
+      if !(bet = Bet.where(match: @match, user: current_user)).empty?
+        @bet=bet.first
+        redirect_to edit_match_bet_path(@bet, match_id: @match.id)
+      end
+      @bet = Bet.new
+      @bet.match = @match
+    else
+      redirect_to all_bets_path, alert: t('errors.messages.bet_disabled')
     end
-    @bet = Bet.new
-    @bet.match = @match
   end
 
   # GET /bets/1/edit

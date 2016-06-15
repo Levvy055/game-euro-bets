@@ -16,6 +16,7 @@
                   <div class="collapse navbar-collapse" id="inventory">
                     <ul class="nav navbar-nav">
                       <li <%= 'class=active' if current_page?(controller: 'matches', action: 'index') %>><%= link_to t('.matches'), matches_path %> </li>
+                      <li <%= 'class=active' if current_page?(controller: 'countries', action: 'index') %>><%= link_to t('.countries'), countries_path %> </li>
                       <li <%= 'class=active' if current_page?(controller: 'users', action: 'ranking') %>><%= link_to t('.ranking'), ranking_path %> </li>
                       <li <%= 'class=active' if current_page?(controller: 'bets', action: 'index') %>><%= link_to t('.all_bets'), all_bets_path %> </li>
                       <% if current_user %>

@@ -1,5 +1,12 @@
+<div class="col-md-12">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p id="alert"><%= alert %></p>
+    <% end %>
+</div>
 <div class="jumbotron">
-    <p id="notice"><%= notice %></p>
     <% if current_user_is_admin %>
         <%= link_to t('.edit'), edit_match_path(@match) %> |
     <% end %>

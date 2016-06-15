@@ -12,3 +12,18 @@ span.center-height-vs {
 .tp_win {background-color:#053802;}
 .op_win {background-color:#020438;}
 .wait_win {background-color:#343802;}
+
+.country_flag {
+    margin-top:15px;
+    
+    p {
+        margin-top: -90px;
+        z-index: 9999;
+        position: relative;
+        font-size: 20px;
+        text-shadow: 1px 1px 1px #000;
+        letter-spacing: 8px;
+        margin-left: 10px;
+        margin-bottom: 90px;
+    }
+}

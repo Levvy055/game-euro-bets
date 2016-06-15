@@ -9,8 +9,9 @@ Rails.application.routes.draw do
   get 'ranking' => 'users#ranking', as: :ranking
   
   resources :groups, only: [:index, :show] do
-    resources :countries, only: [:index, :show]
+    resources :countries, only: [:show]
   end
+  get 'countries' => 'countries#index', as: :countries
   
   resources :matches, only: [:index, :update, :edit, :show] do
     get 'new_bet' => 'bets#new'

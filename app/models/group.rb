@@ -1,5 +1,5 @@
 class Group < ActiveRecord::Base
-    has_many :country
+    has_many :countries
     
     validates :name, presence: true, uniqueness: true
 end

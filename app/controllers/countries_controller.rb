@@ -4,12 +4,13 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @countries = Country.all
+    @countries = Country.all.includes(:group)
   end
 
   # GET /countries/1
   # GET /countries/1.json
   def show
+    @matches = Match.where("country_a_id = ? or country_b_id = ?", @country.id, @country.id).includes([:country_a, :country_b])
   end
 
   # GET /countries/new

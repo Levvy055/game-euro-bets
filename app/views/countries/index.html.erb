@@ -1,37 +1,46 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <p id="notice"><%= notice %></p>
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p id="alert"><%= alert %></p>
+      <% end %>
     </div>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h1>Listing Countries</h1>
+      <h1><%= t '.title' %></h1>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-12">
-      <table>
-        <thead>
+    <div class="col-md-12 jumbotron">
+      <table id="countries_table" class="table table-striped table-bordered table-hover table-inverse">
+        <% @countries.each do |country| %>
           <tr>
-            <th colspan="3"></th>
+            <td>
+              <%= country.name %>
+            </td>
+            <td>
+              <div class="flag">
+                <%= link_to group_country_path(id: country.id, group_id: country.group.id) do %>
+                  <%= image_tag 'flags/'+country.code+'.png', class: 'img-responsive' %>
+                <% end %>
+              </div>
+            </td>
+            <td>
+              <%= Group.model_name.human + ': ' + country.group.name %>
+            </td>
+            <td>
+              <%= link_to group_country_path(group_id: country.group.id, id: country.id) do %>
+                <i class="fa fa-arrow-right goto_fa" aria-hidden="true"></i>
+              <% end %>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% @countries.each do |country| %>
-            <tr>
-              <td><%= link_to 'Show', country %></td>
-              <td><%= link_to 'Edit', edit_country_path(country) %></td>
-              <td><%= link_to 'Destroy', country, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            </tr>
-          <% end %>
-        </tbody>
+          <p></p>
+        <% end %>
       </table>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <%= link_to 'New Country', new_country_path %>
     </div>
   </div>
 </div>
