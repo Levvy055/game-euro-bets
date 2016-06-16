@@ -28,7 +28,7 @@
               <div class="col-md-5">
                 <div class="bet_country">
                   <%= @match.country_a.name %>
-                  <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+                  <%= image_tag @match.country_a.img, class: 'img-responsive' %>
                   <%= f.number_field :score_a, :placeholder => Bet.human_attribute_name('score_a'), hide_label: true, :required => "required", :class => "input-txt" %>
                 </div>
               </div>
@@ -38,7 +38,7 @@
               <div class="col-md-5">
                 <div class="bet_country">
                   <%= @match.country_b.name %>
-                  <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+                  <%= image_tag @match.country_b.img, class: 'img-responsive' %>
                   <%= f.number_field :score_b, :placeholder => Bet.human_attribute_name('score_b'), hide_label: true, :required => "required", :class => "input-txt" %>
                 </div>
               </div>

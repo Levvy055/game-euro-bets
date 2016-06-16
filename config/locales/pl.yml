@@ -67,9 +67,10 @@ pl:
       my_bets: Moje zakłady
       ranking: Ranking
       login: Logowanie/Rejestracja
-      logout: Logout
+      logout: Wyloguj
     footer:
       author: Autor
+      version: Wersja
 
   sessions:
     new:
@@ -135,11 +136,15 @@ pl:
   users:
     new:
       new: Zarejestruj się
+    create:
+      created: 'Użytkownik został pomyślnie zarejestrowany'
     form:
       save: Zapisz
     ranking:
       title: Ranking
       points: Zdobyte punkty
+      bets_count: Ilość zakładów
+      active_bets_count: Aktywne zakłady
   matches:
     index:
       listing_matches: Lista meczów

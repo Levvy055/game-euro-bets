@@ -21,7 +21,7 @@
             <td data-title="Kraj A">
               <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
                 <h2><%= @match.country_a.name %></h2>
-                <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+                <%= image_tag @match.country_a.img, class: 'img-responsive' %>
               <% end %>
             </td>
             <td data-title="Wynik A"><%= @match.score_a == nil ? '~' : @match.score_a %></td>
@@ -30,7 +30,7 @@
             <td data-title="Kraj B">
               <%= link_to group_country_path(id: @match.country_b.id, group_id: @match.country_b.group.id) do %>
                 <h2><%= @match.country_b.name %></h2>
-                <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+                <%= image_tag @match.country_b.img, class: 'img-responsive' %>
               <% end %>
             </td>
             <% if @match.are_bets_active %>

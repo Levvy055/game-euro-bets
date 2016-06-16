@@ -25,7 +25,7 @@
             <td>
               <div class="flag">
                 <%= link_to group_country_path(id: country.id, group_id: country.group.id) do %>
-                  <%= image_tag 'flags/'+country.code+'.png', class: 'img-responsive' %>
+                  <%= image_tag country.img, class: 'img-responsive' %>
                 <% end %>
               </div>
             </td>

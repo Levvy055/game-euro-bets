@@ -4,7 +4,7 @@ class CountriesController < ApplicationController
   # GET /countries
   # GET /countries.json
   def index
-    @countries = Country.all.includes(:group)
+    @countries = Country.all.includes(:group).order('groups.name ASC')
   end
 
   # GET /countries/1

@@ -21,13 +21,18 @@
           <tr>
             <th><%= User.human_attribute_name('visible_name') %></th>
             <th><%= t '.points' %></th>
+            <th><%= t '.bets_count' %></th>
+            <th><%= t '.active_bets_count' %></th>
           </tr>
         </thead>
         <tbody>
           <% @users.each do |u| %>
-              <% points = u.bets_points %>
+            <% points = u.bets_points %>
+            <tr>
               <td data-title="<%= User.model_name.human %>"><%= u.visible_name %></td>
-              <td data-title="<%= t '.points' %>"><%= points.to_s + 'Pkt' %></td>
+              <td data-title="<%= t '.points' %>"><%= points.to_s + ' Pkt' %></td>
+              <td data-title="<%= t '.bets_count' %>"><%= u.bets.done.count.to_s %></td>
+              <td data-title="<%= t '.active_bets_count' %>"><%= u.bets.active.count.to_s %></td>
             </tr>
           <% end %>
         </tbody>

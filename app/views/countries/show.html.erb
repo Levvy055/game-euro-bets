@@ -18,7 +18,7 @@
                     <h2><%= @country.name %></h2>
                 </div>
                 <div class="flag">
-                    <%= image_tag 'flags/'+@country.code+'.png', class: 'img-responsive' %>
+                    <%= image_tag @country.img, class: 'img-responsive' %>
                 </div>
             </div>
             <div class="col-md-6">
@@ -33,7 +33,7 @@
                             </div>
                             <div class="col-md-4">
                                 <%= link_to group_country_path(id: c.id, group_id: @country.group.id) do %>
-                                    <%= image_tag 'flags/'+c.code+'.png', class: 'img-responsive' %>
+                                    <%= image_tag c.img, class: 'img-responsive' %>
                                 <% end %>
                             </div>
                         </div>

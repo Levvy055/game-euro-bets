@@ -1,25 +1,39 @@
-<div id="login_section">
-  <div class="login-dialog">
-    <div class="container login-content">
-      <div class="col-md-5 login">
-      	<h1 class="login-heading">
-      	  <strong><%= t('.welcome') %></strong> 
-      	  <%= t('.please') %>
-      	</h1>
-        <%= form_for(:session, url: login_path) do |f| %>
-      	  <div class="input-group">
-            <%= f.email_field :email, :placeholder => User.human_attribute_name('email'), :required => "required", :class => "input-txt" %>
-          </div>
-          <div class="input-group">
-            <%= f.password_field :password, :placeholder =>  User.human_attribute_name('password'), :required => "required", :class => "input-txt" %>
-         </div>
-          <div class="login-footer">
-            <%= f.submit t('.login'), :class => "btn btn-primary btn-right" %>
-          </div>
-        <% end %>
-      </div>
-      <div class="col-md-5 login-register">
-          <%= link_to t('.register'), register_path, class: 'btn btn-default' %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <% if notice %>
+        <p id="notice"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p id="alert"><%= alert %></p>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+  	<h1 class="login-heading">
+  	  <strong><%= t('.welcome') %></strong> 
+  	</h1>
+	</div>
+  <div id="login_section row">
+    <div class="login-dialog">
+      <div class="container jumbotron login-content">
+        <p><h2><%= t('.please') %></h2></p>
+        <div class="col-md-4 login">
+          <%= form_for(:session, url: login_path) do |f| %>
+        	  <div class="input-group">
+              <%= f.email_field :email, :placeholder => User.human_attribute_name('email'), :required => "required", :class => "input-txt" %>
+            </div>
+            <div class="input-group">
+              <%= f.password_field :password, :placeholder =>  User.human_attribute_name('password'), :required => "required", :class => "input-txt" %>
+           </div>
+            <div class="login-footer">
+              <%= f.submit t('.login'), :class => "btn btn-primary btn-right" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-md-4 login-register">
+            <%= link_to t('.register'), register_path, class: 'btn btn-default' %>
+        </div>
       </div>
     </div>
   </div>

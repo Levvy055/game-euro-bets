@@ -6,33 +6,39 @@
   <p id="alert"><%= alert %></p>
 <% end %>
 <div class="jumbotron">
-    <%= link_to 'javascript:history.back()' do %>
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+  <% if notice %>
+    <%= link_to all_bets_path do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
     <% end %>
-    <div class="bet container">
-        <div class="row">
-          <div class="col-md-5">
-            <div class="bet_country">
-              <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
-                <h2><%= @match.country_a.name %></h2>
-                <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
-              <% end %>
-              <div class="bet_pscore"><h1><%= @bet.score_a %></h1></div>
-            </div>
-          </div>
-          <div class="col-md-2">
-            <span class="center-height-vs">vs</span>
-          </div>
-          <div class="col-md-5">
-            <div class="bet_country">
-              <h2><%= @match.country_b.name %></h2>
-              <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
-              <div class="bet_pscore"><h1><%= @bet.score_b %></h1></div>
-            </div>
+  <% else %>
+    <%= link_to 'javascript:history.back()' do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+  <div class="bet container">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="bet_country">
+            <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
+              <h2><%= @match.country_a.name %></h2>
+              <%= image_tag @match.country_a.img, class: 'img-responsive' %>
+            <% end %>
+            <div class="bet_pscore"><h1><%= @bet.score_a %></h1></div>
           </div>
         </div>
-    </div>
-    <% if @match.are_bets_active %>
-      <%= link_to t('.edit'), edit_match_bet_path(id: @bet, match_id: @match) %>
-    <% end %>
+        <div class="col-md-2">
+          <span class="center-height-vs">vs</span>
+        </div>
+        <div class="col-md-5">
+          <div class="bet_country">
+            <h2><%= @match.country_b.name %></h2>
+            <%= image_tag @match.country_b.img, class: 'img-responsive' %>
+            <div class="bet_pscore"><h1><%= @bet.score_b %></h1></div>
+          </div>
+        </div>
+      </div>
+  </div>
+  <% if @match.are_bets_active %>
+    <%= link_to t('.edit'), edit_match_bet_path(id: @bet, match_id: @match) %>
+  <% end %>
 </div>

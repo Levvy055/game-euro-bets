@@ -49,22 +49,24 @@
               <td data-title="<%= Country.model_name.human+' A' %>" class="countries">
                 <%= link_to group_country_path(id: match.country_a.id, group_id: match.country_a.group.id) do %>
                   <div class="country_flag">
-                    <%= image_tag 'flags/'+match.country_a.code+'.png', class: 'img-responsive' %>
+                    <%= image_tag match.country_a.img, class: 'img-responsive' %>
                     <p><%= match.country_a.name %></p>
                   </div>
                 <% end %>
               </td>
               <td data-title="<%= t '.score' %>" class="score">
                 <div class="row real_score">
-                  <%= match.score_a == nil ? '~' : match.score_a %>
-                   : 
-                  <%= match.score_b == nil ? '~' : match.score_b %> 
+                  <% if match.got_score %>
+                    <%= match.score_a.to_s + ' : ' + match.score_b.to_s %>
+                  <% else %>
+                    <%= '~|~' %>
+                  <% end %>
                 </div>
               </td>
               <td data-title="<%= Country.model_name.human+' B' %>" class="countries">
                 <%= link_to group_country_path(id: match.country_b.id, group_id: match.country_b.group.id) do %>
                   <div class="country_flag">
-                    <%= image_tag 'flags/'+match.country_b.code+'.png', class: 'img-responsive' %>
+                    <%= image_tag match.country_b.img, class: 'img-responsive' %>
                     <p><%= match.country_b.name %></p>
                   </div>
                 <% end %>

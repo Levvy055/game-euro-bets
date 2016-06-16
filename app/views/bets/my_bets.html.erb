@@ -59,7 +59,7 @@
               <td data-title="<%= Country.model_name.human+' A' %>">
                 <%= link_to group_country_path(id: a.id, group_id: a.group.id) do %>
                   <div class="country_flag">
-                    <%= image_tag 'flags/'+a.code+'.png', class: 'img-responsive' %>
+                    <%= image_tag a.img, class: 'img-responsive' %>
                     <%= a.name %>
                   </div>
                 <% end %>
@@ -91,7 +91,7 @@
               <td data-title="<%= Country.model_name.human+' B' %>">
                 <%= link_to group_country_path(id: b.id, group_id: b.group.id) do %>
                   <div class="country_flag">
-                    <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>
+                    <%= image_tag b.img, class: 'img-responsive' %>
                     <%= b.name %>
                   </div>
                 <% end %>
