@@ -146,6 +146,8 @@ pl:
       make_bet: Obstaw
       options: Opcje
       edit: Edytuj
+      type: Wpisz, aby filtrować
+      active_bets: Pokaż tylko aktywne zakłady
     show:
       points: Punkty
       start_time: Data meczu
