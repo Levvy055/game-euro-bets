@@ -110,6 +110,9 @@ pl:
       waiting: Oczekiwanie
       p_score: Obstawiony
       r_score: Realny
+      type: Wpisz, aby filtrować
+      active_bets: Pokaż tylko aktywne zakłady
+      filter: 'Filtruj:'
     my_bets:
       rus?: 'Na pewno chcesz cofnąć ten zakład?'
       title: Twoje zakłady
@@ -118,6 +121,11 @@ pl:
       or_score: O/R Wynik
       options: Opcje
       waiting: Oczekiwanie
+      p_score: Obstawiony
+      r_score: Realny
+      type: Wpisz, aby filtrować
+      active_bets: Pokaż tylko aktywne zakłady
+      filter: 'Filtruj:'
     update:
       updated: Zakład został zaktualizowany pomyślnie
     create:
@@ -148,6 +156,7 @@ pl:
       edit: Edytuj
       type: Wpisz, aby filtrować
       active_bets: Pokaż tylko aktywne zakłady
+      filter: 'Filtruj:'
     show:
       points: Punkty
       start_time: Data meczu

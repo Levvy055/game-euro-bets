@@ -10,7 +10,7 @@ class BetsController < ApplicationController
   # GET /bets
   # GET /bets.json
   def index
-    @bets = Bet.all.includes(match: [:country_a, :country_b])
+    @bets = Bet.all.includes(match: [:country_a, :country_b]).order('matches.start_time ASC')
   end
 
   # GET /bets/1
@@ -79,7 +79,7 @@ class BetsController < ApplicationController
   end
   
   def my_bets
-    @bets = Bet.where(user: current_user).includes(match: [:country_a, :country_b])
+    @bets = Bet.where(user: current_user).includes(match: [:country_a, :country_b]).order('matches.start_time ASC')
   end
   
   def is_owner_or_admin

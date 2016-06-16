@@ -16,19 +16,31 @@
   </div>
   <div class="row">
     <div class="col-md-12 jumbotron table-responsive">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 form-group">
+            <label for="search_bet_input"><%= t '.filter' %></label>
+            <input id="search_bet_input" class="form-control" placeholder="<%= t '.type' %>"/>
+          </div>
+          <div class="col-md-3 checkbox">
+            <label><input id="active_bets" type="checkbox" name="vehicle" value="active_bets"/> <%= t '.active_bets' %></label>
+          </div>
+        </div>
+        <br/>
+      </div>
       <table id="all_bets_table" class="table table-hover table-condensed table-inverse">
         <thead>
           <tr>
             <th><%= User.model_name.human %></th>
             <th><%= t '.points' %></th>
             <th><%= t '.start_time' %></th>
-            <th><%= Country.model_name.human %></th>
+            <th><%= Country.model_name.human+' A' %></th>
             <th><%= t '.or_score' %></th>
-            <th><%= Country.model_name.human %></th>
+            <th><%= Country.model_name.human+' B' %></th>
             <th><%= t '.options' %></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="mbbody">
           <% @bets.each do |bet| %>
             <% match, a, b = bet.match, bet.country_a, bet.country_b 
               if !match.are_bets_active
@@ -46,7 +58,7 @@
               <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
               <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
               <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
-              <td data-title="<%= Country.model_name.human %>">
+              <td data-title="<%= Country.model_name.human+' A' %>">
                 <%= link_to group_country_path(id: a.id, group_id: a.group.id) do %>
                   <div class="country_flag">
                     <%= image_tag 'flags/'+a.code+'.png', class: 'img-responsive' %>
@@ -78,7 +90,7 @@
                   </div>
                 <% end %>
               </td>
-              <td data-title="<%= Country.model_name.human %>">
+              <td data-title="<%= Country.model_name.human+' B' %>">
                 <%= link_to group_country_path(id: b.id, group_id: b.group.id) do %>
                   <div class="country_flag">
                     <%= image_tag 'flags/'+b.code+'.png', class: 'img-responsive' %>

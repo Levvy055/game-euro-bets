@@ -19,7 +19,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-3 form-group">
-            <label for="search_match_input">Filtruj:</label>
+            <label for="search_match_input"><%= t '.filter' %></label>
             <input id="search_match_input" class="form-control" placeholder="<%= t '.type' %>"/>
           </div>
           <div class="col-md-3 checkbox">
@@ -28,7 +28,7 @@
         </div>
         <br/>
       </div>
-      <table id="table_match" class="table table-hover table-inverse">
+      <table id="table_matches" class="table table-hover table-inverse">
         <thead>
           <tr>
             <th><%= t '.start_time' %></th>
