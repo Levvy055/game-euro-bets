@@ -31,6 +31,7 @@
                           <th><%= t '.points' %></th>
                           <th><%= t '.start_time' %></th>
                           <th><%= t '.pr_score' %></th>
+                          <th><%= Country.model_name.human(count: 2) %></th>
                           <th><%= t '.options' %></th>
                         </tr>
                       </thead>
@@ -48,11 +49,14 @@
                             <% end %>
                                 <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
                                 <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
-                                <td data-title="<%= t '.start_time' %>"><%= bet.match.start_time.to_s(:short) %></td>
+                                <td data-title="<%= t '.start_time' %>"><%= bet.match.start_time.utc.to_s(:short) %></td>
                                 <td data-title="<%= t '.pr_score' %>">
                                     <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
                                     :
                                     <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                                </td>
+                                <td data-title="<%= Country.model_name.human(count: 2) %>">
+                                    <%= bet.match.country_a.name %> : <%= bet.match.country_b.name %>
                                 </td>
                                 <td data-title="<%= t '.options' %>">
                                     <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id) do %>

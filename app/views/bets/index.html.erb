@@ -61,7 +61,7 @@
                 <% end %>
               </td>
               <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
-              <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
+              <td data-title="<%= t '.start_time' %>"><%= match.start_time.utc.to_s(:short) %></td>
               <td data-title="<%= Country.model_name.human+' A' %>">
                 <%= link_to group_country_path(id: a.id, group_id: a.group.id) do %>
                   <div class="country_flag">

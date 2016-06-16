@@ -45,7 +45,7 @@
         <tbody id="fbody">
           <% @matches.each do |match| %>
             <tr class="<%= match.are_bets_active ? 'bets_active' : 'bets_disabled' %>">
-              <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
+              <td data-title="<%= t '.start_time' %>"><%= match.start_time.utc.to_s(:short) %></td>
               <td data-title="<%= Country.model_name.human+' A' %>" class="countries">
                 <%= link_to group_country_path(id: match.country_a.id, group_id: match.country_a.group.id) do %>
                   <div class="country_flag">

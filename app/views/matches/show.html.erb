@@ -19,7 +19,7 @@
     <div class="match_details jumbotron table-responsive">
       <table class="table table-bordered table-hover table-inverse">
         <tr>
-            <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
+            <td data-title="<%= t '.start_time' %>"><%= @match.start_time.utc.to_s(:short) %></td>
             <td data-title="<%= Country.model_name.human+' A' %>">
               <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
                 <h2><%= @match.country_a.name %></h2>
@@ -77,9 +77,13 @@
                 <% else %>
                   <tr class="wait_win">
                 <% end %>
-                <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
+                <td data-title="<%= User.model_name.human %>">
+                  <%= link_to user_path(bet.user.visible_name) do %>
+                    <%= bet.user.visible_name %>
+                  <% end %>
+                </td>
                 <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
-                <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
+                <td data-title="<%= t '.start_time' %>"><%= @match.start_time.utc.to_s(:short) %></td>
                 <td data-title="<%= t '.pr_score' %>">
                     <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
                     :

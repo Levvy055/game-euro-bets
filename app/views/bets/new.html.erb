@@ -8,7 +8,7 @@
       <div class="col-md-6">
         <%= bootstrap_form_for(@bet, url: match_create_bet_path(match_id: params[:match_id]), layout: :horizontal) do |f| %>
           <div class="match-name">
-            <span> Data i godzina meczu: <%= @bet.match.start_time.to_s(:short) %></span>
+            <span> Data i godzina meczu: <%= @bet.match.start_time.utc.to_s(:short) %></span>
           </div>
           <% if @bet.errors.any? %>
             <div id="error_explanation">

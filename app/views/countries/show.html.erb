@@ -49,7 +49,7 @@
         <% @matches.each do |m| %>
             <div class="row">
                 <div class="col-md-2">
-                    <%= m.start_time.to_s(:short) %>
+                    <%= m.start_time.utc.to_s(:short) %>
                 </div>
                 <div class="col-md-2">
                     <%= m.country_a.name %>
