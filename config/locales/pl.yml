@@ -92,6 +92,7 @@ pl:
       back_to_my: Wróć do moich zakładów
       back_to_matches: Wróć do listy meczy
     show:
+      title: Zakład
       points: Punkty
       start_time: Data meczu
       or_score: O/R Wynik

@@ -6,40 +6,44 @@
       <p id="alert"><%= alert %></p>
     <% end %>
 </div>
-<div class="jumbotron">
+<div>
     <% if current_user_is_admin %>
-        <%= link_to t('.edit'), edit_match_path(@match) %> |
+      <%= link_to t('.edit'), edit_match_path(@match) %> |
     <% end %>
     <h1><%= Match.model_name.human %></h1>
     <%= link_to matches_path do %>
-        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
     <% end %>
-    <div class="match_details">
-        <table>
-            <tr>
-                <td data-title="Czas rozpoczęcia"><%= @match.start_time.to_s(:short) %></td>
-                <td data-title="Kraj A">
-                  <%= @match.country_a.name %>
-                  <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
-                </td>
-                <td data-title="Wynik A"><%= @match.score_a == nil ? '~' : @match.score_a %></td>
-                <td data-title=":"> : </td>
-                <td data-title="Wynik B"><%= @match.score_b == nil ? '~' : @match.score_b %> </td>
-                <td data-title="Kraj B">
-                  <%= @match.country_b.name %>
-                  <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
-                </td>
-                <% if @match.are_bets_active %>
-                  <td data-title="Obstaw mecz">
-                    <%= link_to match_new_bet_path(match_id: @match.id) do %>
-                        <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
-                    <% end %>
-                  </td>
-                <% else %>
-                  <td></td>
+    <div class="match_details jumbotron table-responsive">
+      <table class="table table-bordered table-hover table-inverse">
+        <tr>
+            <td data-title="Czas rozpoczęcia"><%= @match.start_time.to_s(:short) %></td>
+            <td data-title="Kraj A">
+              <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
+                <h2><%= @match.country_a.name %></h2>
+                <%= image_tag 'flags/'+@match.country_a.code+'.png', class: 'img-responsive' %>
+              <% end %>
+            </td>
+            <td data-title="Wynik A"><%= @match.score_a == nil ? '~' : @match.score_a %></td>
+            <td data-title=":"> : </td>
+            <td data-title="Wynik B"><%= @match.score_b == nil ? '~' : @match.score_b %> </td>
+            <td data-title="Kraj B">
+              <%= link_to group_country_path(id: @match.country_b.id, group_id: @match.country_b.group.id) do %>
+                <h2><%= @match.country_b.name %></h2>
+                <%= image_tag 'flags/'+@match.country_b.code+'.png', class: 'img-responsive' %>
+              <% end %>
+            </td>
+            <% if @match.are_bets_active %>
+              <td data-title="Obstaw mecz">
+                <%= link_to match_new_bet_path(match_id: @match.id) do %>
+                    <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
                 <% end %>
-             </tr>
-        </table>
+              </td>
+            <% else %>
+              <td></td>
+            <% end %>
+         </tr>
+      </table>
     </div>
     <div class="match_bets">
         <h2><%= Bet.model_name.human(count: 2) %></h2>
