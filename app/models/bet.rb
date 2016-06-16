@@ -4,8 +4,8 @@ class Bet < ActiveRecord::Base
     has_one :country_a, class_name: 'Country', through: :match
     has_one :country_b, class_name: 'Country', through: :match
     
-    scope :active, -> {joins(:match).where('matches.start_time > ?', DateTime.now)}
-    scope :done, -> {joins(:match).where('matches.start_time <= ?', DateTime.now)}
+    scope :active, -> {joins(:match).where('matches.start_time > ?', DateTime.now.utc + 2.hours)}
+    scope :done, -> {joins(:match).where('matches.start_time <= ?', DateTime.now.utc + 2.hours)}
     
     def points
         m = self.match

@@ -4,7 +4,7 @@ class Match < ActiveRecord::Base
     has_many  :bets
     
     def are_bets_active
-       self.start_time > DateTime.now 
+       self.start_time.utc > (DateTime.now.utc + 2.hours)
     end
     
     def got_score
