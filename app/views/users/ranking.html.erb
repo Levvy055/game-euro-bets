@@ -29,7 +29,13 @@
           <% @users.each do |u| %>
             <% points = u.bets_points %>
             <tr>
-              <td data-title="<%= User.model_name.human %>"><%= u.visible_name %></td>
+              <td data-title="<%= User.model_name.human %>">
+                <%= link_to user_path(u.visible_name) do %>
+                  <div>
+                    <%= u.visible_name %>
+                  </div>
+                <% end %>
+              </td>
               <td data-title="<%= t '.points' %>"><%= points.to_s + ' Pkt' %></td>
               <td data-title="<%= t '.bets_count' %>"><%= u.bets.done.count.to_s %></td>
               <td data-title="<%= t '.active_bets_count' %>"><%= u.bets.active.count.to_s %></td>

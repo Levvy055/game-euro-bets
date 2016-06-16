@@ -143,8 +143,17 @@ pl:
     ranking:
       title: Ranking
       points: Zdobyte punkty
-      bets_count: Ilość zakładów
+      bets_count: Zakłady zakończone
       active_bets_count: Aktywne zakłady
+    show:
+      points: Punkty
+      start_time: Data meczu
+      pr_score: Obstawiony Wynik
+      options: Opcje
+      waiting: Oczekiwanie
+      rus?: 'Na pewno chcesz cofnąć ten zakład?'
+      start_time: Data
+      score: Wynik
   matches:
     index:
       listing_matches: Lista meczów
@@ -169,6 +178,8 @@ pl:
       options: Opcje
       waiting: Oczekiwanie
       rus?: 'Na pewno chcesz cofnąć ten zakład?'
+      start_time: Data
+      score: Wynik
   countries:
     show:
       title: Info o Kraiku

@@ -55,7 +55,11 @@
               else %>
                 <tr class="wait_win">
               <% end %>
-              <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
+              <td data-title="<%= User.model_name.human %>">
+                <%= link_to user_path(bet.user.visible_name) do %>
+                  <%= bet.user.visible_name %>
+                <% end %>
+              </td>
               <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
               <td data-title="<%= t '.start_time' %>"><%= match.start_time.to_s(:short) %></td>
               <td data-title="<%= Country.model_name.human+' A' %>">

@@ -1,12 +1,14 @@
-<div class="col-md-12">
+<div class="row">
+  <div class="col-md-12">
     <% if notice %>
       <p id="notice"><%= notice %></p>
     <% end %>
     <% if alert %>
       <p id="alert"><%= alert %></p>
     <% end %>
+  </div>
 </div>
-<div>
+<div class="row">
     <% if current_user_is_admin %>
       <%= link_to t('.edit'), edit_match_path(@match) %> |
     <% end %>
@@ -17,17 +19,23 @@
     <div class="match_details jumbotron table-responsive">
       <table class="table table-bordered table-hover table-inverse">
         <tr>
-            <td data-title="Czas rozpoczęcia"><%= @match.start_time.to_s(:short) %></td>
-            <td data-title="Kraj A">
+            <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
+            <td data-title="<%= Country.model_name.human+' A' %>">
               <%= link_to group_country_path(id: @match.country_a.id, group_id: @match.country_a.group.id) do %>
                 <h2><%= @match.country_a.name %></h2>
                 <%= image_tag @match.country_a.img, class: 'img-responsive' %>
               <% end %>
             </td>
-            <td data-title="Wynik A"><%= @match.score_a == nil ? '~' : @match.score_a %></td>
-            <td data-title=":"> : </td>
-            <td data-title="Wynik B"><%= @match.score_b == nil ? '~' : @match.score_b %> </td>
-            <td data-title="Kraj B">
+            <td data-title="<%= t '.score' %>">
+              <h2>
+                <% if @match.got_score %>
+                  <%= @match.score_a.to_s + ' : ' + @match.score_b.to_s %>
+                <% else %>
+                  <%= '~|~' %>
+                <% end %>
+              </h2>
+            </td>
+            <td data-title="<%= Country.model_name.human+' B' %>">
               <%= link_to group_country_path(id: @match.country_b.id, group_id: @match.country_b.group.id) do %>
                 <h2><%= @match.country_b.name %></h2>
                 <%= image_tag @match.country_b.img, class: 'img-responsive' %>
@@ -60,36 +68,38 @@
           <tbody>
             <% @bets.each do |bet| 
                 points = bet.points
-                if points == 3
-                  print '<tr class="tp_win">'
-                elsif points == 1
-                  print '<tr class="op_win">'
-                else points == 0
-                  print '<tr class="np_win">'
-                end %>
-                    <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
-                    <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
-                    <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
-                    <td data-title="<%= t '.pr_score' %>">
-                        <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
-                        :
-                        <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
-                    </td>
-                    <td data-title="<%= t '.options' %>">
-                        <%= link_to match_bet_path(id: bet.id, match_id: @match.id) do %>
-                            <i class="fa fa-info" aria-hidden="true"></i>
+                if points == 3 %>
+                  <tr class="tp_win">
+                <% elsif points == 1 %>
+                  <tr class="op_win">
+                <% elsif points == 0 %>
+                  <tr class="np_win">
+                <% else %>
+                  <tr class="wait_win">
+                <% end %>
+                <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
+                <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
+                <td data-title="<%= t '.start_time' %>"><%= @match.start_time.to_s(:short) %></td>
+                <td data-title="<%= t '.pr_score' %>">
+                    <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
+                    :
+                    <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                </td>
+                <td data-title="<%= t '.options' %>">
+                    <%= link_to match_bet_path(id: bet.id, match_id: @match.id) do %>
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                    <% end %>
+                    <% if @match.are_bets_active && (bet.user == current_user || current_user_is_admin) %>
+                         | <%= link_to edit_match_bet_path(id: bet.id, match_id: @match.id), class: 'info-link' do %>
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        <% end %> | 
+                        <%= link_to match_bet_path(id: bet.id, match_id: @match.id), class: 'info-link', method: :delete, data: { confirm: t('.rus?') } do %>
+                            <i class="fa fa-trash" aria-hidden="true"></i>
                         <% end %>
-                        <% if @match.are_bets_active && (bet.user == current_user || current_user_is_admin) %>
-                             | <%= link_to edit_match_bet_path(id: bet.id, match_id: @match.id), class: 'info-link' do %>
-                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                            <% end %> | 
-                            <%= link_to match_bet_path(id: bet.id, match_id: @match.id), class: 'info-link', method: :delete, data: { confirm: t('.rus?') } do %>
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            <% end %>
-                        <% end %>
-                    </td>
-                </tr>
-              <% end %>
+                    <% end %>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
     </div>

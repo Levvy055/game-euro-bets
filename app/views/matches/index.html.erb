@@ -55,13 +55,15 @@
                 <% end %>
               </td>
               <td data-title="<%= t '.score' %>" class="score">
-                <div class="row real_score">
-                  <% if match.got_score %>
-                    <%= match.score_a.to_s + ' : ' + match.score_b.to_s %>
-                  <% else %>
-                    <%= '~|~' %>
-                  <% end %>
-                </div>
+                <%= link_to match, class: 'info-link'  do %>
+                  <div class="row real_score">
+                    <% if match.got_score %>
+                      <%= match.score_a.to_s + ' : ' + match.score_b.to_s %>
+                    <% else %>
+                      <%= '~|~' %>
+                    <% end %>
+                  </div>
+                <% end %>
               </td>
               <td data-title="<%= Country.model_name.human+' B' %>" class="countries">
                 <%= link_to group_country_path(id: match.country_b.id, group_id: match.country_b.group.id) do %>

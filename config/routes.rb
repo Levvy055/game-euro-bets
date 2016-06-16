@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get '/register' => 'users#new', as: :register
   resources :users, only: [ :create]
   get 'ranking' => 'users#ranking', as: :ranking
+  get 'user/:visible_name' => 'users#show', as: :user
   
   resources :groups, only: [:index, :show] do
     resources :countries, only: [:show]

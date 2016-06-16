@@ -71,7 +71,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      if params.has_key?(:id)
+        @user = User.find(params[:id])
+      else
+        @user = User.where(visible_name: params[:visible_name]).take()
+        @bets = @user.bets.includes(:match).order('matches.start_time ASC')
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

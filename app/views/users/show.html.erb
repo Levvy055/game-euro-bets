@@ -1,4 +1,78 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="col-md-12">
+    <% if notice %>
+      <p id="notice"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p id="alert"><%= alert %></p>
+    <% end %>
+</div>
+<%= link_to ranking_path do %>
+      <i class="fa fa-chevron-left" aria-hidden="true"></i>
+    <% end %>
+<% if @user == current_user || current_user_is_admin %>
+    <%# link_to t('.edit'), edit_user_path(@user) %> |
+<% end %>
+<div class="row jumbotron">
+    <div class="col-md-12">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                  <p><strong><%= User.model_name.human %></strong>: 
+                  <%= @user.visible_name %></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="match_bets table-responsive">
+                    <h2><%= Bet.model_name.human(count: 2) %></h2>
+                    <table class="table table-hover table-condensed table-inverse">
+                        <thead>
+                        <tr>
+                          <th><%= User.model_name.human %></th>
+                          <th><%= t '.points' %></th>
+                          <th><%= t '.start_time' %></th>
+                          <th><%= t '.pr_score' %></th>
+                          <th><%= t '.options' %></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% @bets.each do |bet| 
+                            points = bet.points
+                            if points == 3 %>
+                              <tr class="tp_win">
+                            <% elsif points == 1 %>
+                              <tr class="op_win">
+                            <% elsif points == 0 %>
+                              <tr class="np_win">
+                            <% else %>
+                              <tr class="wait_win">
+                            <% end %>
+                                <td data-title="<%= User.model_name.human %>"><%= bet.user.visible_name %></td>
+                                <td data-title="<%= t '.points' %>"><%= points != nil ? points.to_s + 'Pkt' :  t('.waiting') %></td>
+                                <td data-title="<%= t '.start_time' %>"><%= bet.match.start_time.to_s(:short) %></td>
+                                <td data-title="<%= t '.pr_score' %>">
+                                    <%= bet.score_a == nil ? 'Err' : bet.score_a.to_s %>
+                                    :
+                                    <%= bet.score_b == nil ? 'Err' : bet.score_b.to_s %>
+                                </td>
+                                <td data-title="<%= t '.options' %>">
+                                    <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id) do %>
+                                        <i class="fa fa-info" aria-hidden="true"></i>
+                                    <% end %>
+                                    <% if bet.match.are_bets_active && (bet.user == current_user || current_user_is_admin) %>
+                                         | <%= link_to edit_match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link' do %>
+                                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                                        <% end %> | 
+                                        <%= link_to match_bet_path(id: bet.id, match_id: bet.match.id), class: 'info-link', method: :delete, data: { confirm: t('.rus?') } do %>
+                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                        <% end %>
+                                    <% end %>
+                                </td>
+                            </tr>
+                          <% end %>
+                      </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
