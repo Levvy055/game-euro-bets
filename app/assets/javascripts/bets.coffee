@@ -11,8 +11,8 @@ betsInit = ->
     container: 'body'
   if $('#my_bets_table').length || $('#all_bets_table').length
     $.expr[':'].contains = $.expr.createPseudo((arg) ->
-        (elem) ->
-            $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0
+      (elem) ->
+        $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0
     )
     
     $('#search_bet_input').keyup ->
@@ -21,6 +21,7 @@ betsInit = ->
     $('#active_bets').change ->
       rows = $('#mbbody').find('tr')
       ch = $(this).is(':checked')
+      sessionStorage.setItem('ab_cb_state', ch)
       $('#search_bet_input').keyup()
       if ch
         $.each rows, (i, v) ->
@@ -29,6 +30,11 @@ betsInit = ->
           if vis && !hc
             $(v).hide()
     
+    ab_cb = sessionStorage.getItem('ab_cb_state')
+    if ab_cb == 'true'
+      $('#active_bets').prop('checked', ab_cb)
+      $('#active_bets').change()
+
     $('.dataTable').DataTable {
         # ajax: ...,
        autoWidth: false,

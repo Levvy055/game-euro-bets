@@ -15,6 +15,7 @@ matchesInit = ->
         $('#active_bets').change ->
             rows = $('#fbody').find('tr')
             ch = $(this).is(':checked')
+            sessionStorage.setItem('am_cb_state', ch)
             $('#search_match_input').keyup()
             if ch
                 $.each rows, (i, v) ->
@@ -22,6 +23,11 @@ matchesInit = ->
                     hc = $(v).hasClass('bets_active')
                     if vis && !hc
                         $(v).hide()
+        
+        am_cb = sessionStorage.getItem('am_cb_state')
+        if am_cb == 'true'
+            $('#active_bets').prop('checked', true)
+            $('#active_bets').change()
         
         $('.dataTable').DataTable {
             # ajax: ...,

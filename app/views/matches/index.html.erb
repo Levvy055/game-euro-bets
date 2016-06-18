@@ -78,15 +78,15 @@
               </td>
               <td data-title="<%= t '.make_bet' %>">
               <% if match.are_bets_active %>
-                  <% if (betR = Bet.where(match: match, user: current_user)).empty? %>
-                    <%= link_to match_new_bet_path(match_id: match.id) do %>
-                      <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
-                    <% end %>
-                  <% else %>
-                    <%= link_to edit_match_bet_path(id: betR.first, match_id: match.id) do %>
-                      <%= image_tag 'betted_btn.png', class: 'img-responsive' %>
-                    <% end %>
+                <% if (betR = match.bets.where(user: current_user)).empty? %>
+                  <%= link_to match_new_bet_path(match_id: match.id) do %>
+                    <%= image_tag 'bet_now_btn.png', class: 'img-responsive' %>
                   <% end %>
+                <% else %>
+                  <%= link_to edit_match_bet_path(id: betR.first, match_id: match.id) do %>
+                    <%= image_tag 'betted_btn.png', class: 'img-responsive' %>
+                  <% end %>
+                <% end %>
               <% else %>
                 <%= image_tag 'bet_disabled_btn.png', class: 'img-responsive' %>
               <% end %>

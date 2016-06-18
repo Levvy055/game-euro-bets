@@ -6,7 +6,7 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
-    @matches = Match.all.includes([:country_a, :country_b]).order('start_time ASC')
+    @matches = Match.all.includes([:bets, country_a: :group, country_b: :group]).order('start_time ASC')
   end
 
   # GET /matches/1

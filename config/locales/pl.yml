@@ -185,6 +185,8 @@ pl:
       title: Info o Kraiku
     index:
       title: 'Kraje na Euro 2016'
+      filter: 'Filtruj:'
+      type: Wpisz, aby filtrować
 
   date:
     abbr_day_names:
